@@ -1,0 +1,17 @@
+.map {
+    height: 100%;
+    width: 100%;
+  }
+  .leaflet-container {
+   height: 400px !important;
+   width: 80%;
+   margin: 0 auto;
+ }
+
+ .mapContainer{
+   
+    display: flex;
+    border: 2px, solid,black;
+    height:"700px";
+    width: '700px';
+ }
