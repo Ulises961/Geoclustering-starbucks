@@ -1,12 +1,12 @@
 import  {Component} from 'react';
 import MyMarker from './Marker/marker';
-
+import coloredMarkers from './../../Data/DataAnalysis';
 
 class Markers extends Component{
 
 
     state={ 
-        markers: []
+        markers: coloredMarkers
      
       }
   
@@ -14,36 +14,7 @@ class Markers extends Component{
      
 
     render(){
-      const KMeans = require('clusters');
-      const dataForge = require('data-forge');
-      const df= dataForge.fromCSV('./Data/directory.csv');
-      const newMarkers = [...[df.serialize()]]
 
-      this.setState({markers: newMarkers});
-
-      const subset = df.subset(["sqm"]);
-
-      const kmeans = KMeans.k(4);
-      kmeans.data(subset);
-      kmeans.clusters();
-      
-
-      points.forEach(function (cluster, index) {
-        const color = colors[index];
-        let coloredMarkers = [];
-        this.state.markers.map( marker => {
-        
-          if (marker.sqm == cluster){
-            const newMarker = marker;
-            newMarker.color=color;
-            coloredMarkers.push(marker);
-          }
-        })
-        this.setState({markers:coloredMarkers});
-       
-    });
-
-    
 
         const points = this.state.markers;
       

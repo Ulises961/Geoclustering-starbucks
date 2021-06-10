@@ -1,24 +1,24 @@
-const stats = require('simple-statistics');
-const KMeans = require('shaman').KMeans;
-const dataForge = require('data-forge');
+import { min as _min, max as _max, sum as _sum, median as _median, mode as _mode, mean as _mean, variance as _variance, standardDeviation, quantile as _quantile } from 'simple-statistics';
 
+import { fromCSV } from 'data-forge';
 
-const df= dataForge.fromCSV('./Data/sirectory.csv');
+const kmeans = require('clusters');
+const df= fromCSV('./Data/sirectory.csv');
 const subset = df.subset(["sqm"]);
 
 function summary(column){
     return {
-        min: stats.min(column),
-        max: stats.max(column),
-        sum: stats.sum(column),
-        median: stats.median(column),
-        mode: stats.mode(column),
-        mean: stats.mean(column),
-        variance: stats.variance(column),
-        stdDev: stats.standardDeviation(column),
+        min: _min(column),
+        max: _max(column),
+        sum: _sum(column),
+        median: _median(column),
+        mode: _mode(column),
+        mean: _mean(column),
+        variance: _variance(column),
+        stdDev: standardDeviation(column),
         quantile: {
-            q1: stats.quantile(column,0.25),
-            q3: stats.quantile(column,0.75)
+            q1: _quantile(column,0.25),
+            q3: _quantile(column,0.75)
         }
     }
 }
@@ -35,11 +35,13 @@ kmeans.cluster(subset.toRows(), function ( err, clusters, centroids){
 });
 
 const colors= ['red','blue','yellow','green'];
+let coloredMarkers = [];
 
 clusters.forEach(function (cluster, index) {
     const color = colors[index];
-    const trace = {
-        newCluster = {...cluster, color}
-        
-    }
+    const newCluster = {...cluster, color}
+    coloredMarkers.push(newCluster);
+    
 });
+
+export default coloredMarkers;

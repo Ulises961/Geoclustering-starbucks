@@ -9,23 +9,20 @@ def make_csv(csvFilePath,csvNewFile):
     intermediate_dataset=[]
 
     with open(csvFilePath, encoding='utf-8') as csvf:
-        csvReader = csv.reader(csvf)
+        csvReader = csvf.readlines()
          
         # Append to each row a surface value (int)
-        
-        for rows in csvReader:
-             
-           
-            if csvReader.line_num == 1:
-                rows.append('Sqm')
-                rows.append('color')
-            else:
-                rows.append(str(random.randrange(50,200)))
-                rows.append('\'\'')
+        csvReader[0]+= ","+"Sqm"
+        intermediate_dataset.append(csvReader[0])
+
+        for rows in csvReader[1:-1]:
+    
+            nRow = rows + ","+(str(random.randrange(50,200)))
+          
             
             # Append to the intermediate data set the modified row
             
-            intermediate_dataset.append(rows)
+            intermediate_dataset.append(nRow)
         
 
         # Convert each row into a dictionary
@@ -41,7 +38,7 @@ def make_csv(csvFilePath,csvNewFile):
  
 
 csvFilePath = r'Data/directory.csv'
-csvNewFile = r'Data/directory.csv'
+csvNewFile = r'Data/newdirectory.csv'
  
 # Call the make_json function
 make_csv(csvFilePath, csvNewFile)
