@@ -65,36 +65,47 @@ class Markers extends external_react_.Component {
     super(...args);
 
     _defineProperty(this, "state", {
-      markers: [{
-        lat: 33770013,
-        long: -118192643,
-        color: 'blue',
-        key: 1,
-        info: "This is a blue point"
-      }, {
-        lat: 51.515,
-        long: -0.09,
-        color: 'red',
-        key: 2,
-        info: "This is a red point"
-      }, {
-        lat: 51.510,
-        long: -0.09,
-        color: 'green',
-        key: 3,
-        info: "This is a green point"
-      }]
+      markers: []
+    });
+  }
+
+  analise() {
+    const KMeans = __webpack_require__(191).KMeans;
+
+    const dataForge = __webpack_require__(706);
+
+    const df = dataForge.fromCSV('./Data/directory.csv');
+    const newMarkers = [...df.serialize()];
+    this.setState({
+      markers: newMarkers
+    });
+    const subset = df.subset(["sqm"]);
+    const kmeans = new KMeans(4);
+    kmeans.cluster(subset.toRows(), function (err, clusters, centroids) {
+      console.log(err);
+      console.log(clusters);
+      console.log(centroids);
+    });
+    clusters.forEach(function (cluster, index) {
+      const color = colors[index];
+      this.state.markers.map(marker => {
+        if (marker.sqm == cluster) {
+          const newMarker = marker;
+          newMarker.color = color;
+        }
+      });
     });
   }
 
   render() {
+    this.analise();
     const points = this.state.markers;
     return points.map(marker => {
       console.log(marker);
       return /*#__PURE__*/jsx_runtime_.jsx(Marker_marker, {
         position: [marker.lat, marker.long],
         color: marker.color,
-        info: marker.info
+        info: marker.number
       }, marker.key);
     });
   }
