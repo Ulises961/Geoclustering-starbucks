@@ -4,5 +4,12 @@
     "files": [
       "static/chunks/node_modules_next_dist_client_dev_noop_js.js"
     ]
+  },
+  "index.js -> ../component/map": {
+    "id": "./component/map.jsx",
+    "files": [
+      "static/chunks/vendors-node_modules_babel_runtime_helpers_esm_classCallCheck_js-node_modules_babel_runtime_h-c4b6d3.js",
+      "static/chunks/component_map_jsx.js"
+    ]
   }
 }

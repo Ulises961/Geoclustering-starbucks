@@ -10,43 +10,40 @@ class Markers extends Component{
      
       }
   
-    analise(){
+   
+     
 
-      const KMeans = require('shaman').KMeans;
+    render(){
+      const KMeans = require('clusters');
       const dataForge = require('data-forge');
       const df= dataForge.fromCSV('./Data/directory.csv');
-      const newMarkers = [...df.serialize()]
+      const newMarkers = [...[df.serialize()]]
 
       this.setState({markers: newMarkers});
 
       const subset = df.subset(["sqm"]);
 
-      const kmeans = new KMeans(4);
+      const kmeans = KMeans.k(4);
+      kmeans.data(subset);
+      kmeans.clusters();
+      
 
-      kmeans.cluster(subset.toRows(), function ( err, clusters, centroids){
-          console.log(err);
-          console.log(clusters);
-          console.log(centroids);
-          }     
-      );
-
-      clusters.forEach(function (cluster, index) {
+      points.forEach(function (cluster, index) {
         const color = colors[index];
-
+        let coloredMarkers = [];
         this.state.markers.map( marker => {
         
           if (marker.sqm == cluster){
             const newMarker = marker;
             newMarker.color=color;
+            coloredMarkers.push(marker);
           }
         })
+        this.setState({markers:coloredMarkers});
        
     });
 
-    }
-
-    render(){
-      this.analise();
+    
 
         const points = this.state.markers;
       
