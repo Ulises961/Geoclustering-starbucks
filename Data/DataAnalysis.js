@@ -1,10 +1,16 @@
 import { min as _min, max as _max, sum as _sum, median as _median, mode as _mode, mean as _mean, variance as _variance, standardDeviation, quantile as _quantile } from 'simple-statistics';
 
-import { fromCSV } from 'data-forge';
+import {  fromJSON } from 'data-forge';
 
-const kmeans = require('clusters');
-const df= fromCSV('./Data/sirectory.csv');
-const subset = df.subset(["sqm"]);
+
+const KMeans = require('shaman').KMeans;
+const df= fromJSON('./Data/points.json');
+const subset = df.subset(["Longitude","Latitude"]).select(function (row){ 
+    return {
+        Lat : parseFloat(row.Latitude),
+        Lon : parseFloat(row.Longitude)
+    };
+});
 
 function summary(column){
     return {
@@ -23,8 +29,9 @@ function summary(column){
     }
 }
 
-console.log('sqm');
-console.log(summary(subset.getSeries('sqm').toArray()));
+console.log(subset);
+console.log(summary(subset.getSeries('Longitude').toArray()));
+console.log(summary(subset.getSeries('Latitude').toArray()));
 
 const kmeans = new KMeans(4);
 

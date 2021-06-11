@@ -21,7 +21,7 @@ const Point = (props) => {
             draggable={true}
             
          />
-         <Popup>{props.info}</Popup>
+         <Popup><p>{props.addr}</p><p>{props.city}</p><p>{props.sqm}</p></Popup>
       
          </FeatureGroup>
     );

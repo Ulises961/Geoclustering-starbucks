@@ -14,8 +14,8 @@ class Map extends Component {
     return  (
     <MapContainer
         className={mapstyles.map}
-        center={[51.505, -0.09]}
-        zoom={13}
+        center={[48.00, 16.38]}
+        zoom={9}
         dragging={true}
         scrollWheelZoom={true}
       >

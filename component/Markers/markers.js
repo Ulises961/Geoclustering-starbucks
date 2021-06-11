@@ -1,6 +1,6 @@
 import  {Component} from 'react';
 import MyMarker from './Marker/marker';
-import coloredMarkers from './../../Data/DataAnalysis';
+import coloredMarkers from './../../Data/points.json';
 
 class Markers extends Component{
 
@@ -10,8 +10,6 @@ class Markers extends Component{
      
       }
   
-   
-     
 
     render(){
 
@@ -21,12 +19,14 @@ class Markers extends Component{
         return (points.map((marker)=> { 
 
             console.log(marker);
-            
+       
             return <MyMarker
-                position= {[marker.lat,marker.long]} 
-                color={marker.color}
+                position= {[marker.Lat,marker.Lon]} 
+                color={marker.Color}
                 key = {marker.key}
-                info = {marker.number}               
+                addr = {marker.Address}
+                city = {marker.city}
+                smq = {marker.Smqt}
                 />
             
             })
