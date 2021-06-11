@@ -1,2 +1,1 @@
-declare module "clusters";
-declare module "shaman";
+declare module "kmeans-js";

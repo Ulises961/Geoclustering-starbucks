@@ -8,7 +8,10 @@ import Cluster from './Markers/markers';
 
 class Map extends Component {
 
- 
+  state = {
+    calculateMeans : false
+  }
+
 
   render(){
     return  (
@@ -23,7 +26,8 @@ class Map extends Component {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-      <Cluster />
+        <Cluster calculateMeans={this.state.calculateMeans}/>
+       
       </MapContainer>
     );
   }

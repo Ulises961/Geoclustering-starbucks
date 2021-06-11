@@ -25,6 +25,7 @@ export default function Home() {
         <div className={mapstyles.mapContainer}>
           Map
         </div>
+        
       </main>
    
     </div>

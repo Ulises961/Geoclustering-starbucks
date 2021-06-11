@@ -1,54 +1,52 @@
-import { min as _min, max as _max, sum as _sum, median as _median, mode as _mode, mean as _mean, variance as _variance, standardDeviation, quantile as _quantile } from 'simple-statistics';
+import {  fromJSON,  } from 'data-forge';
+// import Data from "./points.json"
 
-import {  fromJSON } from 'data-forge';
+function show(Data){
+    alert("entered")
+    const KMeans = require('kmeans-js');
+
+    let km = new KMeans({ K: 2});
+    let element = Data;
+
+    const df = fromJSON(JSON.stringify(Data));
+
+    const subset = df.subset(["Sqmt"]).select(function (row){ 
+        return {
+            mts : parseFloat(row.Sqmt),
+        
+        };
+    });
 
 
-const KMeans = require('shaman').KMeans;
-const df= fromJSON('./Data/points.json');
-const subset = df.subset(["Longitude","Latitude"]).select(function (row){ 
-    return {
-        Lat : parseFloat(row.Latitude),
-        Lon : parseFloat(row.Longitude)
-    };
-});
+    km.cluster(subset.toRows());
 
-function summary(column){
-    return {
-        min: _min(column),
-        max: _max(column),
-        sum: _sum(column),
-        median: _median(column),
-        mode: _mode(column),
-        mean: _mean(column),
-        variance: _variance(column),
-        stdDev: standardDeviation(column),
-        quantile: {
-            q1: _quantile(column,0.25),
-            q3: _quantile(column,0.75)
-        }
+    while (km.step()){
+        km.findClosestCentroids();
+        km.moveCentroids();
+    
+        if(km.hasConverged())
+            break;
     }
+
+    console.log('Finished in:', km.currentIteration, ' iterations');
+    console.log(km.centroids, km.clusters);
+    const colors= ['green','yellow','blue','green'];
+    let coloredMarkers = [];
+
+
+    km.clusters.forEach(function(cluster, c_index){
+        const color = colors[c_index];
+        cluster.forEach(function(point){
+            
+            const newCluster = {...element[point],color: color}
+            console.log(element[point],point, color);
+            coloredMarkers.push(newCluster);
+        })
+        
+    });
+    return coloredMarkers;
 }
 
-console.log(subset);
-console.log(summary(subset.getSeries('Longitude').toArray()));
-console.log(summary(subset.getSeries('Latitude').toArray()));
+//console.log(coloredMarkers);
 
-const kmeans = new KMeans(4);
-
-kmeans.cluster(subset.toRows(), function ( err, clusters, centroids){
-    console.log(err);
-    console.log(clusters);
-    console.log(centroids);
-});
-
-const colors= ['red','blue','yellow','green'];
-let coloredMarkers = [];
-
-clusters.forEach(function (cluster, index) {
-    const color = colors[index];
-    const newCluster = {...cluster, color}
-    coloredMarkers.push(newCluster);
-    
-});
-
-export default coloredMarkers;
+export default show;

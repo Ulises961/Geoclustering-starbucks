@@ -14,3 +14,11 @@ a {
 * {
   box-sizing: border-box;
 }
+button{
+
+  width: fit-content;
+  background-color: aliceblue;
+  height: fit-content;
+  border: 1px, solid,black;
+  z-index: 1;
+}
