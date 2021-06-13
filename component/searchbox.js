@@ -1,28 +1,15 @@
+import { LayersControl } from "react-leaflet";
 
-import  MapControl  from 'react-leaflet';
-import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+function TooltipCircle(props) {
 
-
-class SearchBox extends MapControl {
-    constructor(props) {
-      super(props);
-      props.leaflet.map.on('geosearch/showlocation', (e) => props.updateMarker(e));
-    }
-  
-    createLeafletElement() {
-      const searchEl = GeoSearchControl({
-        provider: new OpenStreetMapProvider(),
-        style: 'bar',
-        showMarker: true,
-        showPopup: false,
-        autoClose: true,
-        retainZoomLevel: false,
-        animateZoom: true,
-        keepResult: false,
-        searchLabel: 'search'
-      });
-      return searchEl;
-    }
-  }
-  
-  export default SearchBox
+  return (
+    <LayersControl
+       center={[48.00, 16.38]}
+      onClick={props.clicked}
+      pathOptions={{ fillColor: 'blue' }}
+      radius={500}>
+    
+    </LayersControl>
+  )
+}
+export default TooltipCircle;

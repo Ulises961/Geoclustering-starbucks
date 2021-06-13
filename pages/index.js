@@ -18,13 +18,11 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+       <h1>Sturbucks in the world</h1>
+       <h2>- Colored marked by size -</h2>
+        
         <MapWithNoSSR />
-        <div className={mapstyles.mapContainer}>
-          Map
-        </div>
+       
         
       </main>
    

@@ -2,7 +2,7 @@ import {  fromJSON,  } from 'data-forge';
 // import Data from "./points.json"
 
 function show(Data){
-    alert("entered")
+
     const KMeans = require('kmeans-js');
 
     let km = new KMeans({ K: 2});
@@ -28,9 +28,9 @@ function show(Data){
             break;
     }
 
-    console.log('Finished in:', km.currentIteration, ' iterations');
-    console.log(km.centroids, km.clusters);
-    const colors= ['green','yellow','blue','green'];
+    // console.log('Finished in:', km.currentIteration, ' iterations');
+    // console.log(km.centroids, km.clusters);
+    const colors= ['green','orange','blue','red'];
     let coloredMarkers = [];
 
 
@@ -38,12 +38,13 @@ function show(Data){
         const color = colors[c_index];
         cluster.forEach(function(point){
             
-            const newCluster = {...element[point],color: color}
-            console.log(element[point],point, color);
+            const newCluster = {...element[point],Color: color}
+            
             coloredMarkers.push(newCluster);
         })
         
     });
+
     return coloredMarkers;
 }
 
