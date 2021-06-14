@@ -1,13 +1,27 @@
 import Head from "next/head";
-
+import { useState } from "react";
 import styles from "../styles/Home.module.css";
 import dynamic from "next/dynamic";
-import mapstyles from "./../component/map.module.css";
+import ReferenceMarkers from "../component/Markers/Reference/Reference";
+import Points from "./../Data/points.json";
+import showFunc from './../Data/DataAnalysis'
 
 export default function Home() {
   const MapWithNoSSR = dynamic(() => import("../component/map"), {
     ssr: false,
   });
+
+ const [markers, setMarkers] = useState(Points);
+
+  const toggleClusteringHandler = (markers)=> {
+    const calculatedMeans = showFunc(markers);
+    console.log("Calculated Means obj ",calculatedMeans);
+    setMarkers(calculatedMeans.markers);
+    
+    console.log("[Map.js] this state ",markers);
+  
+  }
+    
 
   return (
     <div className={styles.container}>
@@ -18,12 +32,12 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+
        <h1>Sturbucks in the world</h1>
        <h2>- Colored marked by size -</h2>
-        
-        <MapWithNoSSR />
-       
-        
+
+        <MapWithNoSSR  markers= {markers}/>        
+        <ReferenceMarkers clicked={() => toggleClusteringHandler(markers)}/>
       </main>
    
     </div>

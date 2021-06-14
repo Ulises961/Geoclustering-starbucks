@@ -12,6 +12,18 @@
    
     display: flex;
     border: 2px, solid,black;
-    height:"700px";
-    width: '700px';
+    height:700px;
+    width: 700px;
+ }
+ .overlay{
+ 
+   border: 2px, solid,black;
+   height: 100px;
+   width: 100px;
+   background-color: aquamarine;
+   position: relative;
+   top: 40px;
+   left: 40px;
+   z-index:249;
+   
  }

@@ -120,3 +120,16 @@
     flex-direction: column;
   }
 }
+
+.button{
+
+  background-color: #4883c7;
+  color: rgb(20, 17, 7);
+  border: 1px solid plum;
+  height: 3rem;
+  width:  5rem;
+
+
+
+
+}

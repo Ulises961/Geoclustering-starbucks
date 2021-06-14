@@ -1,5 +1,4 @@
-import {  fromJSON,  } from 'data-forge';
-// import Data from "./points.json"
+import {  fromJSON, fromObject,  } from 'data-forge';
 
 function show(Data){
 
@@ -7,19 +6,23 @@ function show(Data){
 
     let km = new KMeans({ K: 2});
     let element = Data;
-
-    const df = fromJSON(JSON.stringify(Data));
-
-    const subset = df.subset(["Sqmt"]).select(function (row){ 
-        return {
-            mts : parseFloat(row.Sqmt),
-        
-        };
+    console.log("Data: ",Data);
+    const df = fromObject(Data);
+    
+    const surfaceList = [];
+    Data.forEach(object => {
+        surfaceList.push(object.Sqmt);
     });
+    // const subset = df.subset(["Sqmt"]).select(function (row){ 
+    //     return {
+    //         mts : parseFloat(row.Sqmt),
+        
+    //     };
+    // });
 
-
-    km.cluster(subset.toRows());
-
+   // console.log("subset to rows",subset.toRows());
+    // km.cluster(subset.toRows());
+    km.cluster(surfaceList);
     while (km.step()){
         km.findClosestCentroids();
         km.moveCentroids();
@@ -28,24 +31,27 @@ function show(Data){
             break;
     }
 
-    // console.log('Finished in:', km.currentIteration, ' iterations');
-    // console.log(km.centroids, km.clusters);
+     console.log('Finished in:', km.currentIteration, ' iterations');
+     console.log(km.centroids, km.clusters);
     const colors= ['green','orange','blue','red'];
-    let coloredMarkers = [];
-
+    const coloredMarkers = [];
+    const referenceMarkers= [];
 
     km.clusters.forEach(function(cluster, c_index){
         const color = colors[c_index];
+        const referenceMarker = {...km.centroids[c_index], Color:color}
+        referenceMarkers.push(referenceMarker);
+        
         cluster.forEach(function(point){
             
             const newCluster = {...element[point],Color: color}
-            
             coloredMarkers.push(newCluster);
+
         })
         
     });
-
-    return coloredMarkers;
+    console.log("Reference markers ",referenceMarkers);
+    return {markers: coloredMarkers, centroids: referenceMarkers};
 }
 
 //console.log(coloredMarkers);

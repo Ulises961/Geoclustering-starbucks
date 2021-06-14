@@ -15,6 +15,7 @@
     "kmeans-js": "^0.1.2",
     "leaflet": "^1.7.1",
     "leaflet-defaulticon-compatibility": "^0.1.1",
+    "leaflet-easybutton": "^2.4.0",
     "leaflet-geosearch": "^3.3.2",
     "next": "10.2.3",
     "node-kmeans": "^1.1.9",

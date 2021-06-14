@@ -8,7 +8,7 @@ const Point = (props) => {
 
     let zoneOptions = { 
         color:props.color, 
-        fillColor:props.color};
+        fillColor:'red'};
     
 
 
@@ -17,7 +17,7 @@ const Point = (props) => {
         <Circle
             center= {props.position}
             pathOptions={zoneOptions}
-            radius={5000}
+            radius={200}
             stroke={true}
             draggable={true}
            
@@ -27,8 +27,8 @@ const Point = (props) => {
             Starbucks <br></br>
             Address: {props.addr} <br></br>
             City: {props.city}<br></br>
-            Sqmt: {props.meters} <br></br>
-            <button onClick={props.clicked}>Calculate Means</button>
+            Sqmt: {props.meters}
+            
          </Popup>
           
          </FeatureGroup>
