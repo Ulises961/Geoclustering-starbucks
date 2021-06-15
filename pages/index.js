@@ -35,11 +35,11 @@ export default function Home() {
 
        <h1>Sturbucks in the world</h1>
        <h2>- Colored marked by size -</h2>
-
+      
         <MapWithNoSSR  markers= {markers}/>        
         <ReferenceMarkers clicked={() => toggleClusteringHandler(markers)}/>
       </main>
-   
+   <footer className={styles.footer}></footer>
     </div>
   );
 }

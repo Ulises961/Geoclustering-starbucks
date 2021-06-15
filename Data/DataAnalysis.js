@@ -7,21 +7,12 @@ function show(Data){
     let km = new KMeans({ K: 2});
     let element = Data;
     console.log("Data: ",Data);
-    const df = fromObject(Data);
-    
+  
     const surfaceList = [];
     Data.forEach(object => {
         surfaceList.push(object.Sqmt);
     });
-    // const subset = df.subset(["Sqmt"]).select(function (row){ 
-    //     return {
-    //         mts : parseFloat(row.Sqmt),
-        
-    //     };
-    // });
-
-   // console.log("subset to rows",subset.toRows());
-    // km.cluster(subset.toRows());
+ 
     km.cluster(surfaceList);
     while (km.step()){
         km.findClosestCentroids();

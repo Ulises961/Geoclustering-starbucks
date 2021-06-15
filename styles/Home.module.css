@@ -121,15 +121,18 @@
   }
 }
 
-.button{
+/* .button{
 
   background-color: #4883c7;
   color: rgb(20, 17, 7);
   border: 1px solid plum;
   height: 3rem;
   width:  5rem;
-
-
-
+  box-shadow: #9fc8f8;
 
 }
+.button:hover{
+  background-color: #9fc8f8;
+  color: rgb(180, 52, 94);
+
+} */
