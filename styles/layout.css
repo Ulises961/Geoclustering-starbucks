@@ -1,0 +1,15 @@
+
+h1{
+    line-height: 12;
+    font-weight: 800;
+}
+
+.card{ 
+
+    position: relative;
+    padding: 2px;
+    margin: 10px;
+    flex-basis: 25%;
+}
+
+

@@ -1,10 +1,10 @@
 
 import MyMarker from './Marker/marker';
 
-const Markers = (props) => {
-    console.log(props);
+const Markers = ({markers}) => {
+    console.log(markers);
     return (
-        props.markers.map((marker,index)=> { 
+        markers.map((marker,index)=> { 
      
             return <MyMarker
                 position= {[marker.Lat,marker.Lon]} 
