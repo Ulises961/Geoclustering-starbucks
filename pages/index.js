@@ -38,7 +38,7 @@ export default function Home({originalPoints, organizedPoints}) {
   const[shop,setShop]= useState(null);
 
   const findInMap = (shop) => {
-    setShop(shop);
+    setShop((current) => current = shop);
   }
 
   return (

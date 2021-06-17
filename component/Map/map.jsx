@@ -16,8 +16,7 @@ const Map = (props) => {
 
 
   useEffect(() => {
-    if (!map) return;
-     
+    if(!map || !props.shop) return;
     map.flyTo([props.shop.Lat, props.shop.Lon]);
     console.log("props.lat ",props.shop.Lat, "props.lon ",props.shop.Lon);
     }, [Shop, map]);
@@ -31,6 +30,7 @@ const Map = (props) => {
         zoom={10}
         dragging={true}
         scrollWheelZoom={false}
+        whenCreated={setMap}
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
