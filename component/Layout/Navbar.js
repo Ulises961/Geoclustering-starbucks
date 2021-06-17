@@ -43,12 +43,16 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Home', 'About'].map((text, index) => (
-          <ListItem button key={text} href="/">
-            <ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <ApartmentIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
+     
+          <ListItem button key="Home" >
+            <ListItemIcon> <HomeIcon /></ListItemIcon>
+            <ListItemText primary="Home" />
           </ListItem>
-        ))}
+          <ListItem button key="About" >
+            <ListItemIcon><ApartmentIcon /></ListItemIcon>
+            <ListItemText primary="About" />
+          </ListItem>
+
       </List>
 
     </div>
@@ -56,18 +60,19 @@ export default function TemporaryDrawer() {
 
   return (
             <AppBar position="static">
-                <Toolbar variant="prominent">
-                    <IconButton 
-                        edge="start" 
-                        className={classes.menuButton} 
-                        color="inherit"
-                        aria-label="menu">
-                        
-                        <MenuIcon onClick={toggleDrawer('left',true)}/>
-                        <Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
-                          {list('left')}
-                        </Drawer>
-                    </IconButton>
+                <Toolbar variant="regular">
+                 
+                  <MenuIcon
+                    edge="start" 
+                    className={classes.menuButton} 
+                    color="inherit"
+                    aria-label="menu" onClick={toggleDrawer('left',true)}  
+
+                  />
+                  <Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
+                    {list('left')}
+                  </Drawer>
+          
                     <Typography variant="h6" color="inherit">Menu</Typography> 
                 </Toolbar>
                 

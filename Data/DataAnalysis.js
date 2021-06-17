@@ -22,8 +22,8 @@ function show(Data){
             break;
     }
 
-     console.log('Finished in:', km.currentIteration, ' iterations');
-     console.log(km.centroids, km.clusters);
+    //  console.log('Finished in:', km.currentIteration, ' iterations');
+    //  console.log(km.centroids, km.clusters);
     const colors= ['green','orange','blue','red'];
     const coloredMarkers = [];
     const referenceMarkers= [];
@@ -41,7 +41,7 @@ function show(Data){
         })
         
     });
-    console.log("Reference markers ",referenceMarkers);
+   // console.log("Reference markers ",referenceMarkers);
     return {markers: coloredMarkers, centroids: referenceMarkers};
 }
 

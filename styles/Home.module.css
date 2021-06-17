@@ -88,7 +88,8 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  width: 45%;
+  width: 80%;
+  flex-wrap: nowrap;
 }
 
 .card:hover,
@@ -127,29 +128,38 @@
   padding: 0 0.5rem;
   display: flex;
   flex-direction: row;
-  justify-content:flex-end;
-  align-items: top;
+  justify-content: space-around;
+  width: 100%;
+  flex-wrap: wrap;
   height: 100vh; 
 }
 
 .map {
+
+  padding: 0 0.5rem;
+  justify-content: center;
+  align-self: flex-start;
+  height: 70%;
+  width: 40%;
+  margin: 1rem 1rem;
+  
+  
+}
+@media screen and (max-width: 600px) {
+  .map{
+    flex: 0 0 300px; 
+  }
+  .sidebar{
+    width: 50%;
+  }
+}
+.sidebar{
   min-height: 50vh;
   padding: 0 0.5rem;
   justify-content: center;
   align-self: right;
-  height: 80vh;
-  flex-basis: 40%;
-  margin-right: 2rem;
-  
-}
-.sidebar{
-
-  min-height: 50vh;
-  padding: 0 0.5rem;
-  justify-content: center;
-  align-items: center;
   height: 70vh;
-  border-right: 1px solid #0070f3;
+  flex: 1 1 40%;
+  margin: 1rem 1rem;
 
 }
-

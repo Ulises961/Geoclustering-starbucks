@@ -2,7 +2,7 @@
 import MyMarker from './Marker/marker';
 
 const Markers = ({markers}) => {
-    console.log(markers);
+   // console.log(markers);
     return (
         markers.map((marker,index)=> { 
      

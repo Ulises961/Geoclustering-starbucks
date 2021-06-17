@@ -2,11 +2,11 @@ import Head from "next/head";
 import { useState } from "react";
 import styles from "../styles/Home.module.css";
 import dynamic from "next/dynamic";
-
+import { Scrollbars } from "react-custom-scrollbars";
 import Points from "./../Data/points.json";
 import showFunc from './../Data/DataAnalysis'
 import Layout,{siteTitle} from "../component/Layout/Layout";
-import { Card } from "@material-ui/core";
+import Shop from '../component/Cards'
 export async function getStaticProps(){
   const organizedPoints = showFunc(Points);
   const originalPoints = Points;
@@ -26,15 +26,21 @@ export default function Home({originalPoints, organizedPoints}) {
 
   const toggleClusteringHandler = ()=> {
     
-    console.log("Calculated Means obj ",markers);
+ //   console.log("Calculated Means obj ",markers);
     setMarkers(organizedPoints.markers);
     
-    console.log("[Index.js] this state ",markers);
+  //  console.log("[Index.js] this state ",markers);
   
   }
     
-  console.log("[Index.js] this state ",markers);
+  // console.log("[Index.js] this state ",markers);
   
+  const[shop,setShop]= useState(null);
+
+  const findInMap = (shop) => {
+    setShop(shop);
+  }
+
   return (
 
     
@@ -48,20 +54,32 @@ export default function Home({originalPoints, organizedPoints}) {
 
         <section>
 
-        <h1 className={styles.title}>Starbucks in the world</h1>
-        <h2 className={styles.description}>- Colored marked by size -</h2>
+          <h1 className={styles.title}>Starbucks in the world</h1>
+          <h2 className={styles.description}>- Colored marked by size -</h2>
         </section>
-        
-        <section className={styles.infoblock}>
-       
-        <div className={styles.sidebar}>
-          {originalPoints.map(()=> <Card></Card>)}
-          </div>
+          
+          <section className={styles.infoblock}>
           <div className={styles.map}>
-          <MapWithNoSSR  markers= {markers}/>   
+            <MapWithNoSSR  markers= {markers} shop={shop}/>   
+          </div>
+        
+          <div className={styles.sidebar}>
+            <Scrollbars>
+              {originalPoints.map((point)=> {
+              //  console.log("Point",point)
+              return <Shop
+                key={[point.Lat, point.Lon,point.Address]}
+                clicked={() => findInMap(point)}
+                city={point.City}
+                address={point.Address}
+                sqmt={point.Sqmt}
+                />})}
+            </Scrollbars>
           </div>
        
-       </section>
+       
+     
+        </section>
           
     </Layout>
   );
