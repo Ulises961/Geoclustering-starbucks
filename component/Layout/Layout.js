@@ -1,15 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Toolbar } from "@material-ui/core";
-import { Typography } from "@material-ui/core";
-import { Button } from "@material-ui/core";
-import { IconButton } from "@material-ui/core";
+import { Toolbar,Typography,IconButton,AppBar } from "@material-ui/core";
+import ReferenceMarkers from "../Markers/Reference/Reference";
 import MenuIcon from '@material-ui/icons/Menu';
 import Head from "next/dist/next-server/lib/head";
-import { AppBar } from "@material-ui/core";
 import ScopedCssBaseline from "@material-ui/core/ScopedCssBaseline";
-
-
+import styles from '../../styles/Home.module.css';
+import Navbar from './Navbar';
 export const siteTitle = 'K-Means';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,15 +24,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Layout({children, home ,tab}){
 
-
-
-
     const classes = useStyles();
     
 
     return (
-
-        <ScopedCssBaseline>
+            <>
             <Head>
                 <title>{siteTitle}</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -44,19 +37,7 @@ export default function Layout({children, home ,tab}){
                 content="Groupping Starbucks shops by their square surface" /> 
                 <meta name="og:title" content={siteTitle} />
             </Head>
-            <AppBar position="static">
-                <Toolbar variant="prominent">
-                    <IconButton 
-                        edge="start" 
-                        className={classes.menuButton} 
-                        color="inherit"
-                        aria-label="menu">
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" color="inherit">Cards</Typography>
-                    <Button color ="inherit">Calculate</Button>
-                </Toolbar>
-            </AppBar>
+           <Navbar />
             <main>{children}</main>
             {/* {!home && (
                 <div className={styles.backToHome}>
@@ -67,7 +48,7 @@ export default function Layout({children, home ,tab}){
             )} */}
             <footer> Created By ... </footer>
 
-        </ScopedCssBaseline>
+            </>
 
     );
 

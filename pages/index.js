@@ -2,11 +2,11 @@ import Head from "next/head";
 import { useState } from "react";
 import styles from "../styles/Home.module.css";
 import dynamic from "next/dynamic";
-import ReferenceMarkers from "../component/Markers/Reference/Reference";
+
 import Points from "./../Data/points.json";
 import showFunc from './../Data/DataAnalysis'
-import Layout,{siteTitle} from "../component/Layout";
-
+import Layout,{siteTitle} from "../component/Layout/Layout";
+import { Card } from "@material-ui/core";
 export async function getStaticProps(){
   const organizedPoints = showFunc(Points);
   const originalPoints = Points;
@@ -18,7 +18,7 @@ export async function getStaticProps(){
 
 
 export default function Home({originalPoints, organizedPoints}) {
-  const MapWithNoSSR = dynamic(() => import("../component/map"), {
+  const MapWithNoSSR = dynamic(() => import("../component/Map/map"), {
     ssr: false,
   });
 
@@ -51,11 +51,17 @@ export default function Home({originalPoints, organizedPoints}) {
         <h1 className={styles.title}>Starbucks in the world</h1>
         <h2 className={styles.description}>- Colored marked by size -</h2>
         </section>
+        
+        <section className={styles.infoblock}>
+       
+        <div className={styles.sidebar}>
+          {originalPoints.map(()=> <Card></Card>)}
+          </div>
           <div className={styles.map}>
           <MapWithNoSSR  markers= {markers}/>   
           </div>
-          <ReferenceMarkers clicked={() => toggleClusteringHandler()}/>
        
+       </section>
           
     </Layout>
   );

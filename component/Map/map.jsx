@@ -4,8 +4,8 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 import mapstyles from "./map.module.css";
-import Cluster from './Markers/markers';
-import showFunc from './../Data/DataAnalysis';
+import Cluster from '../Markers/markers';
+import showFunc from '../../Data/DataAnalysis';
 
 const Map = (props) => {
 
