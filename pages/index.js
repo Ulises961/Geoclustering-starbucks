@@ -7,6 +7,10 @@ import Points from "./../Data/points.json";
 import showFunc from './../Data/DataAnalysis'
 import Layout,{siteTitle} from "../component/Layout/Layout";
 import Shop from '../component/Cards'
+import { Button, ButtonGroup } from "@material-ui/core";
+
+
+
 export async function getStaticProps(){
   const organizedPoints = showFunc(Points);
   const originalPoints = Points;
@@ -24,16 +28,8 @@ export default function Home({originalPoints, organizedPoints}) {
 
  const [markers, setMarkers] = useState(originalPoints);
 
-  const toggleClusteringHandler = ()=> {
     
- //   console.log("Calculated Means obj ",markers);
-    setMarkers(organizedPoints.markers);
-    
-  //  console.log("[Index.js] this state ",markers);
   
-  }
-    
-  // console.log("[Index.js] this state ",markers);
   
   const[shop,setShop]= useState(null);
 
@@ -57,28 +53,42 @@ export default function Home({originalPoints, organizedPoints}) {
           <h1 className={styles.title}>Starbucks in the world</h1>
           <h2 className={styles.description}>- Colored marked by size -</h2>
         </section>
-          
-          <section className={styles.infoblock}>
-          <div className={styles.map}>
-            <MapWithNoSSR  markers= {markers} shop={shop}/>   
-          </div>
+
         
-          <div className={styles.sidebar}>
-            <Scrollbars>
-              {originalPoints.map((point)=> {
-              //  console.log("Point",point)
-              return <Shop
-                key={[point.Lat, point.Lon,point.Address]}
-                clicked={() => findInMap(point)}
-                city={point.City}
-                address={point.Address}
-                sqmt={point.Sqmt}
-                />})}
-            </Scrollbars>
+        <section className={styles.cardsContainer}>
+          
+         
+
+         
+          <div className={styles.infoblock}>
+            <div className={styles.map}>
+              <MapWithNoSSR  markers= {markers} shop={shop}/>   
+            </div>
+          
+            <div className={styles.sidebar}>
+            <div className={styles.buttonset}>
+
+            <ButtonGroup variant="text" size="large" color="primary" aria-label="text primary button group">
+              <Button onClick={()=>setMarkers(organizedPoints.markers)}>Means Clustering</Button>
+              <Button>DBScan</Button>
+              <Button onClick={()=> setMarkers(originalPoints)}>Reset</Button>
+            </ButtonGroup>
+
+
+              </div>
+              <Scrollbars>
+                {originalPoints.map((point)=> {
+                //  console.log("Point",point)
+                return <Shop
+                  key={[point.Lat, point.Lon,point.Address]}
+                  clicked={() => findInMap(point)}
+                  city={point.City}
+                  address={point.Address}
+                  sqmt={point.Sqmt}
+                  />})}
+              </Scrollbars>
+            </div>
           </div>
-       
-       
-     
         </section>
           
     </Layout>

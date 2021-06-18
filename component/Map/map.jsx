@@ -17,9 +17,10 @@ const Map = (props) => {
 
   useEffect(() => {
     if(!map || !props.shop) return;
-    map.flyTo([props.shop.Lat, props.shop.Lon]);
+    map.flyTo([props.shop.Lat, props.shop.Lon],15);
+    // map.setView([props.shop.Lat, props.shop.Lon],15)
     console.log("props.lat ",props.shop.Lat, "props.lon ",props.shop.Lon);
-    }, [Shop, map]);
+    }, [map]);
 
     return  (
      
@@ -29,7 +30,7 @@ const Map = (props) => {
         center={[50.9, 4.4]}
         zoom={10}
         dragging={true}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
         whenCreated={setMap}
       >
         <TileLayer

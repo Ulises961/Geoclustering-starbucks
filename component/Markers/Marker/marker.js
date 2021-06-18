@@ -15,7 +15,7 @@ export default function Point(props) {
             options: { 
               
                 shadowSize:   [50, 64],
-                iconAnchor:   [12.5, 40],
+                iconAnchor:   [12, 40],
                 shadowAnchor: [4, 62],
                 popupAnchor:  [-3, -76],
                 shadowUrl:  "/marker-icons/shadow.png"}
@@ -31,18 +31,28 @@ export default function Point(props) {
           }),
           redIcon = new LeafIcon({
             iconUrl: "/marker-icons/red-marker.png",
+          }),
+
+          blueIcon = new LeafIcon({
+            iconUrl: "/marker-icons/blue-marker.png",
           });
             //  Use the state hook:
-        const [icon, setIcon] = useState(redIcon);
+        const [icon, setIcon] = useState(blueIcon);
         
        
 
     useEffect(() => {
-        
-        if(props.color === "green")
-        setIcon((icon)=> icon = greenIcon);
-        else if (props.color === "orange")
-            setIcon((icon)=> icon = orangeIcon);
+        switch(props.color){
+
+        case "green": setIcon((icon)=> icon = greenIcon);
+          break;
+        case "orange": setIcon((icon)=> icon = orangeIcon);
+          break;
+        case "red": setIcon((icon)=> icon = redIcon);
+          break;
+      }
+       
+            
     },[props]);
      
     return (
@@ -50,7 +60,8 @@ export default function Point(props) {
         <Marker 
           icon={icon}
           position = {props.position}
-          draggable={true}>
+       
+          >
         <Circle
             center= {props.position}
             pathOptions={zoneOptions}

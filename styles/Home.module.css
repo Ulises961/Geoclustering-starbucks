@@ -163,3 +163,15 @@
   margin: 1rem 1rem;
 
 }
+
+.cardscontainer{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.buttonset{
+  display: flex;
+  flex-direction: row;
+  align-content: center safe;
+}
