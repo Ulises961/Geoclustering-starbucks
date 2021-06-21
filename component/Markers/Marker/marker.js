@@ -1,84 +1,73 @@
-import React, { useEffect, useState } from 'react';
-import {Circle , Popup, FeatureGroup, Marker}from 'react-leaflet';
+import React, { useEffect, useState } from "react";
+import { Circle, Popup, FeatureGroup, Marker } from "react-leaflet";
 import * as L from "leaflet";
 import "./marker.module.css";
-import 'leaflet/dist/leaflet.css';
-
+import "leaflet/dist/leaflet.css";
 
 export default function Point(props) {
+  const zoneOptions = {
+    color: props.color,
+    fillColor: props.color,
+  };
 
-    const zoneOptions = { 
-        color:props.color, 
-        fillColor:props.color};
-    
-        const LeafIcon = L.Icon.extend({
-            options: { 
-              
-                shadowSize:   [50, 64],
-                iconAnchor:   [12, 40],
-                shadowAnchor: [4, 62],
-                popupAnchor:  [0, -30],
-                shadowUrl:  "/marker-icons/shadow.png"}
-          });
+  const LeafIcon = L.Icon.extend({
+    options: {
+      shadowSize: [50, 64],
+      iconAnchor: [12, 40],
+      shadowAnchor: [4, 62],
+      popupAnchor: [0, -30],
+      shadowUrl: "/marker-icons/shadow.png",
+    },
+  });
 
-          const orangeIcon = new LeafIcon({
-            iconUrl: "/marker-icons/orange-marker.png",
-           
-          }),
-          greenIcon = new LeafIcon({
-            iconUrl:"/marker-icons/green-marker.png",
-         
-          }),
-          redIcon = new LeafIcon({
-            iconUrl: "/marker-icons/red-marker.png",
-          }),
+  const orangeIcon = new LeafIcon({
+      iconUrl: "/marker-icons/orange-marker.png",
+    }),
+    greenIcon = new LeafIcon({
+      iconUrl: "/marker-icons/green-marker.png",
+    }),
+    redIcon = new LeafIcon({
+      iconUrl: "/marker-icons/red-marker.png",
+    }),
+    blueIcon = new LeafIcon({
+      iconUrl: "/marker-icons/blue-marker.png",
+    });
+  //  Use the state hook:
+  const [icon, setIcon] = useState(blueIcon);
 
-          blueIcon = new LeafIcon({
-            iconUrl: "/marker-icons/blue-marker.png",
-          });
-            //  Use the state hook:
-        const [icon, setIcon] = useState(blueIcon);
-        
-       
+  useEffect(() => {
+    switch (props.color) {
+      case "Green":
+        setIcon((icon) => (icon = greenIcon));
+        break;
+      case "Orange":
+        setIcon((icon) => (icon = orangeIcon));
+        break;
+      case "Red":
+        setIcon((icon) => (icon = redIcon));
+        break;
+      default:
+        setIcon((icon) => (icon = blueIcon));
+    }
+  }, [props]);
 
-    useEffect(() => {
-        switch(props.color){
-
-        case "Green": setIcon((icon)=> icon = greenIcon);
-          break;
-        case "Orange": setIcon((icon)=> icon = orangeIcon);
-          break;
-        case "Red": setIcon((icon)=> icon = redIcon);
-          break;
-          default:setIcon((icon)=> icon = blueIcon);
-      }
-       
-            
-    },[props]);
-     
-    return (
-      <FeatureGroup>
-        <Marker 
-          icon={icon}
-          position = {props.position}
-       
-          >
+  return (
+    <FeatureGroup>
+      <Marker icon={icon} position={props.position}>
         <Circle
-            center= {props.position}
-            pathOptions={zoneOptions}
-            radius={200}
-            stroke={true}
-         />
-         <Popup> 
-            Starbucks <br></br>
-            Address: {props.addr} <br></br>
-            City: {props.city}<br></br>
-            Sqmt: {props.meters}
-            
-         </Popup>
-         </Marker>
-          
-         </FeatureGroup>
-    );
-
+          center={props.position}
+          pathOptions={zoneOptions}
+          radius={200}
+          stroke={true}
+        />
+        <Popup>
+          Starbucks <br></br>
+          Address: {props.addr} <br></br>
+          City: {props.city}
+          <br></br>
+          Sqmt: {props.meters}
+        </Popup>
+      </Marker>
+    </FeatureGroup>
+  );
 }
