@@ -9,7 +9,7 @@ const Markers = ({markers}) => {
             return <MyMarker
                 position= {[marker.Lat,marker.Lon]} 
                 color={marker.Color}
-                key = {index}
+                key = {[marker.Lat, marker.Lon,marker.Address],index}
                 addr = {marker.Address}
                 city = {marker.City}
                 meters = {marker.Sqmt}

@@ -1,12 +1,11 @@
-import {  fromJSON, fromObject,  } from 'data-forge';
 
-function show(Data){
+export default function show(Data){
 
     const KMeans = require('kmeans-js');
 
-    let km = new KMeans({ K: 2});
+    let km = new KMeans({ K: 4});
     let element = Data;
-    console.log("Data: ",Data);
+  //  console.log("Data: ",Data);
   
     const surfaceList = [];
     Data.forEach(object => {
@@ -23,8 +22,8 @@ function show(Data){
     }
 
     //  console.log('Finished in:', km.currentIteration, ' iterations');
-    //  console.log(km.centroids, km.clusters);
-    const colors= ['green','orange','blue','red'];
+    //console.log(km.centroids, km.clusters);
+    const colors= ['Green','Orange','Blue','Red'];
     const coloredMarkers = [];
     const referenceMarkers= [];
 
@@ -47,4 +46,3 @@ function show(Data){
 
 //console.log(coloredMarkers);
 
-export default show;

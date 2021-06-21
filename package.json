@@ -12,6 +12,7 @@
     "@material-ui/icons": "^4.11.2",
     "clusters": "0.0.4",
     "data-forge": "^1.8.17",
+    "dbscanjs": "^1.0.1",
     "fs": "0.0.1-security",
     "kmeans": "0.0.1",
     "kmeans-js": "^0.1.2",

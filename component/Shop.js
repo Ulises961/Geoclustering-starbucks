@@ -37,6 +37,9 @@ export default function Shop(props) {
         <Typography variant="h5" component="h2">
           {bull} City: {props.city}
         </Typography>
+        <Typography variant="h5" component="h2">
+          {bull} Color: {props.color}
+        </Typography>
         
         <Typography variant="h5" component="h2">
         {bull}  Adress: {props.address}

@@ -3,43 +3,49 @@ import { useState } from "react";
 import styles from "../styles/Home.module.css";
 import dynamic from "next/dynamic";
 import { Scrollbars } from "react-custom-scrollbars";
-import Points from "./../Data/points.json";
-import showFunc from './../Data/DataAnalysis'
+import kPoints from "./../Data/points.json";
+import showFunc from '../Data/kmeans-clusters'
 import Layout,{siteTitle} from "../component/Layout/Layout";
-import Shop from '../component/Cards'
+import Shop from '../component/Shop'
 import { Button, ButtonGroup } from "@material-ui/core";
+import dBPoints from '../Data/dbscan-clusters';
 
 
 
 export async function getStaticProps(){
-  const organizedPoints = showFunc(Points);
-  const originalPoints = Points;
+  const originalPoints = kPoints;
+  const kOrganizedPoints = showFunc(originalPoints);
+  const dbOrganizedPoints = dBPoints(originalPoints);
+
   return {
-    props : {originalPoints,organizedPoints}
+    props : {originalPoints,kOrganizedPoints, dbOrganizedPoints}
   }
 }
 
 
-
-export default function Home({originalPoints, organizedPoints}) {
+export default function Home({originalPoints, kOrganizedPoints,dbOrganizedPoints}) {
   const MapWithNoSSR = dynamic(() => import("../component/Map/map"), {
     ssr: false,
   });
 
- const [markers, setMarkers] = useState(originalPoints);
-
-    
-  
+  const [markers, setMarkers] = useState(originalPoints);
   
   const[shop,setShop]= useState(null);
+
+  // const calculateKMeansHandler= () => {
+  //   setMarkers(()=> showFunc(markers).markers )
+  // }
 
   const findInMap = (shop) => {
     setShop((current) => current = shop);
   }
 
+
+  console.log(dbOrganizedPoints);
+
   return (
 
-    
+  
     <Layout home>
 
         <Head>
@@ -51,15 +57,12 @@ export default function Home({originalPoints, organizedPoints}) {
         <section>
 
           <h1 className={styles.title}>Starbucks in the world</h1>
-          <h2 className={styles.description}>- Colored marked by size -</h2>
+          <h2 className={styles.description}>- Application of DBScan and K-Means algorithms -</h2>
         </section>
 
         
         <section className={styles.cardsContainer}>
           
-         
-
-         
           <div className={styles.infoblock}>
             <div className={styles.map}>
               <MapWithNoSSR  markers= {markers} shop={shop}/>   
@@ -69,23 +72,25 @@ export default function Home({originalPoints, organizedPoints}) {
             <div className={styles.buttonset}>
 
             <ButtonGroup variant="text" size="large" color="primary" aria-label="text primary button group">
-              <Button onClick={()=>setMarkers(organizedPoints.markers)}>Means Clustering</Button>
-              <Button>DBScan</Button>
-              <Button onClick={()=> setMarkers(originalPoints)}>Reset</Button>
+              <Button onClick={()=> setMarkers(kOrganizedPoints.markers)}>Means Clustering</Button>
+              <Button onClick={()=> setMarkers(dbOrganizedPoints.markers)}>DBScan</Button>
+              <Button onClick={()=> {setMarkers(originalPoints);setShop(null)}}>Reset</Button>
             </ButtonGroup>
 
 
               </div>
               <Scrollbars>
-                {originalPoints.map((point)=> {
-                //  console.log("Point",point)
+                {markers.map((point,index)=> {
+              //    console.log("Point",point)
                 return <Shop
-                  key={[point.Lat, point.Lon,point.Address]}
+                  key={[point.Lat, point.Lon,point.Address],index}
                   clicked={() => findInMap(point)}
                   city={point.City}
                   address={point.Address}
                   sqmt={point.Sqmt}
-                  />})}
+                  color={point.Color}
+                  />
+                  })}
               </Scrollbars>
             </div>
           </div>

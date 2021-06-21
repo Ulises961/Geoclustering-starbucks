@@ -1,13 +1,12 @@
-import React,{Component, useEffect, useState} from "react";
-import { MapContainer, TileLayer, SVGOverlay, LayerGroup } from "react-leaflet";
+import React,{ useEffect, useState} from "react";
+import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 import mapstyles from "./map.module.css";
 import Cluster from '../Markers/markers';
-import showFunc from '../../Data/DataAnalysis';
 import Home from "../../pages";
-import Shop from "../Cards";
+
 const Map = (props) => {
 
     const[map, setMap]= useState(null);
@@ -17,10 +16,10 @@ const Map = (props) => {
 
   useEffect(() => {
     if(!map || !props.shop) return;
-    map.flyTo([props.shop.Lat, props.shop.Lon],15);
-    // map.setView([props.shop.Lat, props.shop.Lon],15)
-    console.log("props.lat ",props.shop.Lat, "props.lon ",props.shop.Lon);
-    }, [map]);
+    // map.flyTo([props.shop.Lat, props.shop.Lon],15);
+    map.setView([props.shop.Lat, props.shop.Lon],15)
+  
+    },[Home,map]);
 
     return  (
      
@@ -28,7 +27,7 @@ const Map = (props) => {
     
         className={mapstyles.map}
         center={[50.9, 4.4]}
-        zoom={10}
+        zoom={2}
         dragging={true}
         scrollWheelZoom={true}
         whenCreated={setMap}

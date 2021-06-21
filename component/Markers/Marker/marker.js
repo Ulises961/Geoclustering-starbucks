@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Circle , Popup, FeatureGroup, Marker}from 'react-leaflet';
 import * as L from "leaflet";
 import "./marker.module.css";
@@ -17,7 +17,7 @@ export default function Point(props) {
                 shadowSize:   [50, 64],
                 iconAnchor:   [12, 40],
                 shadowAnchor: [4, 62],
-                popupAnchor:  [-3, -76],
+                popupAnchor:  [0, -30],
                 shadowUrl:  "/marker-icons/shadow.png"}
           });
 
@@ -44,12 +44,13 @@ export default function Point(props) {
     useEffect(() => {
         switch(props.color){
 
-        case "green": setIcon((icon)=> icon = greenIcon);
+        case "Green": setIcon((icon)=> icon = greenIcon);
           break;
-        case "orange": setIcon((icon)=> icon = orangeIcon);
+        case "Orange": setIcon((icon)=> icon = orangeIcon);
           break;
-        case "red": setIcon((icon)=> icon = redIcon);
+        case "Red": setIcon((icon)=> icon = redIcon);
           break;
+          default:setIcon((icon)=> icon = blueIcon);
       }
        
             

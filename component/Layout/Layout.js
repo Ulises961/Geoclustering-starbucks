@@ -29,28 +29,18 @@ export default function Layout({children, home ,tab}){
 
     return (
             <>
-            <Head>
-                <title>{siteTitle}</title>
-                <link rel="icon" href="/favicon.ico" />
-                <meta 
-                name="description"
-                content="Groupping Starbucks shops by their square surface" /> 
-                <meta name="og:title" content={siteTitle} />
-            </Head>
-           <Navbar />
+              <Head>
+                  <title>{siteTitle}</title>
+                  <link rel="icon" href="/favicon.ico" />
+                  <meta 
+                  name="description"
+                  content="Groupping Starbucks shops by their square surface" /> 
+                  <meta name="og:title" content={siteTitle} />
+              </Head>
+            <Navbar />
             <main>{children}</main>
-            {/* {!home && (
-                <div className={styles.backToHome}>
-                    <Link href="/">
-                        <a>← Back to home</a>
-                    </Link>
-                </div>
-            )} */}
             <footer> Created By ... </footer>
-
-            </>
+          </>
 
     );
-
-    
 }
