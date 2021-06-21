@@ -45,6 +45,6 @@ export default function dbscancluster (Data){
 
     });
 
-    console.log(labels);
+   // console.log(labels);
     return {markers: coloredMarkers, labels: labels };
 }

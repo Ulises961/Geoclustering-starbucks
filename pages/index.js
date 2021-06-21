@@ -41,8 +41,6 @@ export default function Home({originalPoints, kOrganizedPoints,dbOrganizedPoints
   }
 
 
-  console.log(dbOrganizedPoints);
-
   return (
 
   
