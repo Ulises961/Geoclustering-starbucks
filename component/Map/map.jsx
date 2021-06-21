@@ -1,8 +1,5 @@
 import React,{ useEffect, useState} from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
-import "leaflet-defaulticon-compatibility";
 import mapstyles from "./map.module.css";
 import Cluster from '../Markers/markers';
 import Home from "../../pages";
