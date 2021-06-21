@@ -8,7 +8,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import ApartmentIcon from '@material-ui/icons/Apartment';
-import { Toolbar,Typography,IconButton,AppBar } from "@material-ui/core";
+import { Toolbar,Typography,AppBar } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles({

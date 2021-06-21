@@ -1,11 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Toolbar,Typography,IconButton,AppBar } from "@material-ui/core";
-import ReferenceMarkers from "../Markers/Reference/Calculate";
-import MenuIcon from '@material-ui/icons/Menu';
 import Head from "next/dist/next-server/lib/head";
-import ScopedCssBaseline from "@material-ui/core/ScopedCssBaseline";
-import styles from '../../styles/Home.module.css';
 import Navbar from './Navbar';
 export const siteTitle = 'K-Means';
 

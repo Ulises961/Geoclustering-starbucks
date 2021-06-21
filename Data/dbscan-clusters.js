@@ -1,7 +1,6 @@
 //import Data from './points.json'
 import dbscanner from 'dbscanjs'
 
-const distances = []
 export default function dbscancluster (Data){
 
 
