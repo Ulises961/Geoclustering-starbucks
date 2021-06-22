@@ -1,48 +1,36 @@
+export default function show(Data) {
+  const KMeans = require("kmeans-js");
 
-export default function show(Data){
+  let km = new KMeans({ K: 4 });
+  let element = Data;
 
-    const KMeans = require('kmeans-js');
+  const surfaceList = [];
+  Data.forEach((object) => {
+    surfaceList.push(object.Sqmt);
+  });
 
-    let km = new KMeans({ K: 4});
-    let element = Data;
-  //  console.log("Data: ",Data);
-  
-    const surfaceList = [];
-    Data.forEach(object => {
-        surfaceList.push(object.Sqmt);
+  km.cluster(surfaceList);
+  while (km.step()) {
+    km.findClosestCentroids();
+    km.moveCentroids();
+
+    if (km.hasConverged()) break;
+  }
+
+  const colors = ["Green", "Orange", "Blue", "Red"];
+  const coloredMarkers = [];
+  const referenceMarkers = [];
+
+  km.clusters.forEach(function (cluster, c_index) {
+    const color = colors[c_index];
+    const referenceMarker = { ...km.centroids[c_index], Color: color };
+    referenceMarkers.push(referenceMarker);
+
+    cluster.forEach(function (point) {
+      const newCluster = { ...element[point], Color: color };
+      coloredMarkers.push(newCluster);
     });
- 
-    km.cluster(surfaceList);
-    while (km.step()){
-        km.findClosestCentroids();
-        km.moveCentroids();
-    
-        if(km.hasConverged())
-            break;
-    }
+  });
 
-    //  console.log('Finished in:', km.currentIteration, ' iterations');
-    //console.log(km.centroids, km.clusters);
-    const colors= ['Green','Orange','Blue','Red'];
-    const coloredMarkers = [];
-    const referenceMarkers= [];
-
-    km.clusters.forEach(function(cluster, c_index){
-        const color = colors[c_index];
-        const referenceMarker = {...km.centroids[c_index], Color:color}
-        referenceMarkers.push(referenceMarker);
-        
-        cluster.forEach(function(point){
-            
-            const newCluster = {...element[point],Color: color}
-            coloredMarkers.push(newCluster);
-
-        })
-        
-    });
-   // console.log("Reference markers ",referenceMarkers);
-    return {markers: coloredMarkers, centroids: referenceMarkers};
+  return { markers: coloredMarkers, centroids: referenceMarkers };
 }
-
-//console.log(coloredMarkers);
-
