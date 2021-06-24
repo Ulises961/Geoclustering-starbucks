@@ -9,18 +9,25 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
     "dbscanjs": "^1.0.1",
     "kmeans-js": "^0.1.2",
-    "next": "10.2.3",
-    "react-custom-scrollbars": "^4.2.1",
-    "react-leaflet": "^3.2.0",
-    "@material-ui/icons": "^4.11.2",
     "leaflet": "^1.7.1",
-  
+    "next": "10.2.3",
     "node-kmeans": "^1.1.9",
     "react": "17.0.2",
-  
-    "react-dom": "17.0.2"
+    "react-custom-scrollbars": "^4.2.1",
+    "react-dom": "17.0.2",
+    "react-leaflet": "^3.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0"
+  }
 }
