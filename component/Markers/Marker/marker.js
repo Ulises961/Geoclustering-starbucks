@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Circle, Popup, FeatureGroup, Marker } from "react-leaflet";
 import * as L from "leaflet";
-import "./marker.module.css";
+
 import "leaflet/dist/leaflet.css";
 
 export default function Point(props) {

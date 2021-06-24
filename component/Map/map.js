@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
-import mapstyles from "./map.module.css";
 import Cluster from "../Markers/markers";
 import Home from "../../pages";
+import { makeStyles } from "@material-ui/core";
+
+
+const useStyles = makeStyles({
+  map:{
+    height: '100%',
+    width: '100%'
+
+  },
+});
 
 const Map = (props) => {
   const [map, setMap] = useState(null);
@@ -13,9 +22,11 @@ const Map = (props) => {
     map.setView([props.shop.Lat, props.shop.Lon], 15);
   }, [Home, map]);
 
+  const classes = useStyles();
+
   return (
     <MapContainer
-      className={mapstyles.map}
+      className={classes.map}
       center={[50.9, 4.4]}
       zoom={2}
       dragging={true}

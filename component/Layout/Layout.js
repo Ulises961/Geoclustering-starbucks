@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { Box } from "@material-ui/core";
 import Head from "next/dist/next-server/lib/head";
 import Navbar from "./Navbar";
 export const siteTitle = "K-Means";
@@ -15,9 +15,21 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  footer:{
+    width: '100%',
+    bottom:0,
+    backgroundColor: 'black',
+    color: 'white',
+    width: '100%',
+    height: '150px',
+    borderTop: '1px solid #eaeaea',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 }));
 
-export default function Layout({ children, home, tab }) {
+export default function Layout({ children}) {
   const classes = useStyles();
 
   return (
@@ -32,8 +44,8 @@ export default function Layout({ children, home, tab }) {
         <meta name="og:title" content={siteTitle} />
       </Head>
       <Navbar />
-      <main>{children}</main>
-      <footer> Created By ... </footer>
+      <Box>{children}</Box>
+      <Box component="footer"  className={classes.footer} > Created By ... </Box>
     </>
   );
 }
