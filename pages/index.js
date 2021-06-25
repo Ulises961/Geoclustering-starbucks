@@ -2,19 +2,17 @@ import Head from "next/head";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import { Scrollbars } from "react-custom-scrollbars";
-import kPoints from "./../Data/points.json";
-import showFunc from "../Data/kmeans-clusters";
+import calculateKMeans from "../lib/kmeans-clusters";
 import Layout, { siteTitle } from "../component/Layout/Layout";
 import Shop from "../component/Shop";
-import { Box, Button, ButtonGroup } from "@material-ui/core";
-import dBPoints from "../Data/dbscan-clusters";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import { Button, ButtonGroup } from "@material-ui/core";
+import calculateDBSCAN from "../lib/dbscan-clusters";
+import kPoints from "../assets/points.json";
 
 export async function getStaticProps() {
   const originalPoints = kPoints;
-  const kOrganizedPoints = showFunc(originalPoints);
-  const dbOrganizedPoints = dBPoints(originalPoints);
+  const kOrganizedPoints = calculateKMeans(originalPoints);
+  const dbOrganizedPoints = calculateDBSCAN(originalPoints);
 
   return {
     props: { originalPoints, kOrganizedPoints, dbOrganizedPoints },
