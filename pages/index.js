@@ -5,9 +5,10 @@ import { Scrollbars } from "react-custom-scrollbars";
 import calculateKMeans from "../lib/kmeans-clusters";
 import Layout, { siteTitle } from "../component/Layout/Layout";
 import Shop from "../component/Shop";
-import { Button, ButtonGroup } from "@material-ui/core";
+import { Button, ButtonGroup,Box, Container,makeStyles } from "@material-ui/core";
 import calculateDBSCAN from "../lib/dbscan-clusters";
 import kPoints from "../assets/points.json";
+import PropTypes from 'prop-types';
 
 export async function getStaticProps() {
   const originalPoints = kPoints;
@@ -67,11 +68,19 @@ const useStyles = makeStyles({
   },
 });
 
+Home.propTypes  = {
+  originalPoints: PropTypes.array.isRequired,
+  kOrganizedPoints: PropTypes.object.isRequired,
+  dbOrganizedPoints: PropTypes.object.isRequired
+  
+};
+
 export default function Home({
   originalPoints,
   kOrganizedPoints,
   dbOrganizedPoints,
 }) {
+ 
   const MapWithNoSSR = dynamic(() => import("../component/Map/map"), {
     ssr: false,
   });
@@ -81,7 +90,7 @@ export default function Home({
   const [shop, setShop] = useState(null);
 
   const findInMap = (shop) => {
-    setShop((current) => (current = shop));
+    setShop(shop);
   };
 
   const classes = useStyles();
