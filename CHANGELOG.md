@@ -1,5 +1,16 @@
 ## Unreleased
 
+## Added 
+- Dockerfile
+- Front-end / Back-end tree structure
+
+## Changed
+
+- .gitignore to ignore node and next files in the Front-end folder
+
+
+## Version 0.2
+
 ### Added
 - Changelog
 - Contributing

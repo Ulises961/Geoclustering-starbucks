@@ -5,6 +5,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
   bullet: {
@@ -19,6 +20,16 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
 });
+
+Shop.propTypes= {
+
+    city : PropTypes.string.isRequired,
+    color : PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    sqmt: PropTypes.string.isRequired,
+    clicked: PropTypes.func.isRequired
+};
+
 
 export default function Shop(props) {
   const classes = useStyles();

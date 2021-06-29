@@ -4,6 +4,7 @@ import { Box } from "@material-ui/core";
 import Head from "next/dist/next-server/lib/head";
 import Navbar from "./Navbar";
 export const siteTitle = "K-Means";
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
     bottom:0,
     backgroundColor: 'black',
     color: 'white',
-    width: '100%',
     height: '150px',
     borderTop: '1px solid #eaeaea',
     display: 'flex',
@@ -29,7 +29,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Layout({ children}) {
+Layout.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.object)
+}
+
+export default function Layout({children}) {
   const classes = useStyles();
 
   return (
