@@ -3,10 +3,12 @@
 ## Added 
 - Dockerfile
 - Front-end / Back-end tree structure
+- API implementation through Flask and SQLAlchemy
 
 ## Changed
 
-- .gitignore to ignore node and next files in the Front-end folder
+- .gitignore to ignore folders in the new structure ì
+
 
 
 ## Version 0.2
