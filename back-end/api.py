@@ -1,13 +1,15 @@
 import logging
-from flask import Flask
 from flask_restful import Api
-
-from database.database import db
+import json
+from models.shop import Starbucks 
+from database import db, app
 from resources.shops_resource import ShopsResource, SHOPS_ENDPOINT
 from resources.kMeansCluster import ClusterisedShopsResource, KSHOPS_ENDPOINT
 
+logger = logging.getLogger(__name__)
 
-def create_app(db_location):
+
+def create_app():
     """
     This function creates the Flask app, Flask-RESTful API, and Flask-SQLAlchemy connection
     :param db_location : Connection string to the  database
@@ -23,8 +25,8 @@ def create_app(db_location):
         ],
     )
 
-    app = Flask(__name__)
-    app.config["SQLALCHEMY_DATABASE_URI"] = db_location
+    populate_db()
+     
     db.init_app(app)
 
     api = Api(app)
@@ -33,7 +35,29 @@ def create_app(db_location):
                      f"{KSHOPS_ENDPOINT}")
     return app
 
+def populate_db():
+
+    logger.info("initializing db")
+
+    db.create_all()
+    shops = open('database/points.json', 'r')
+    data = json.load(shops)
+
+    print("Type: ", type(data))
+    for obj in data:
+        shop = Starbucks(
+            obj['lon'],
+            obj['lat'],
+            obj['sqmt'],
+            obj['city'],
+            obj['address'],
+            obj['color']
+        )
+    
+        db.session.add(shop)
+    db.session.commit()
+
 
 if __name__ == "__main__":
-    app = create_app("postgresql://postgres:postgres@localhost/shops")
-    app.run(debug=True)
+    app = create_app()
+    app.run(debug=True,host='0.0.0.0')

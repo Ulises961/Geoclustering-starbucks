@@ -7,7 +7,7 @@ from sqlalchemy.orm.exc import NoResultFound
 import os
 import sys
 sys.path.append(os.path.realpath('.'))
-from database.database import db
+from database import db
 from models.shop import Starbucks
 from schemas.shopSchema import ShopSchema
 

@@ -1,8 +1,8 @@
 import os
 import sys
 sys.path.append(os.path.realpath('.'))
-from database.database  import db
-from marshmallow import Schema, fields, post_load
+from database import db
+
 
 class Starbucks(db.Model):
     """
