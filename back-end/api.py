@@ -24,6 +24,7 @@ def create_app():
             logging.StreamHandler()
         ],
     )
+    
 
     populate_db()
      
@@ -40,6 +41,7 @@ def populate_db():
     logger.info("initializing db")
 
     db.create_all()
+
     shops = open('database/points.json', 'r')
     data = json.load(shops)
 
@@ -61,3 +63,4 @@ def populate_db():
 if __name__ == "__main__":
     app = create_app()
     app.run(debug=True,host='0.0.0.0')
+    logger.info(ShopsResource.get())

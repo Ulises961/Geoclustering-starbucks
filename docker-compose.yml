@@ -1,0 +1,54 @@
+version: '3.7'
+
+services:
+  api:
+    build:
+      context: ./back-end
+      dockerfile: Dockerfile
+    volumes:
+      - '/api'
+    ports:
+      - 5002:5000
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@mock-db:5432/shops
+  
+    depends_on: 
+        - mock-db
+
+  mock-db:
+    build:
+      context: ./back-end/database
+      dockerfile: Dockerfile
+    ports: 
+        - 5436:5432
+    environment: 
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+      
+    
+  nginx:
+    build:
+        context: ./nginx
+        dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    depends_on:
+      - api
+      - client
+
+  client:
+    build:
+        context: ./front-end
+        dockerfile: Dockerfile
+    volumes:
+      - '/client'
+
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_SERVICE_URL=http://localhost:8080
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - api

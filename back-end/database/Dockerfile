@@ -1,7 +1,3 @@
-FROM postgres:11.1-alpine
+FROM postgres:latest
 
-COPY . /database
-
-ENTRYPOINT ["python"]
-
-CMD ["db_create.py"]
+ADD db.sql /docker-entrypoint-initdb.d
