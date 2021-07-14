@@ -37,13 +37,13 @@ export default function Point(props) {
 
   useEffect(() => {
     switch (props.color) {
-      case "Green":
+      case "green":
         setIcon((icon) => (icon = greenIcon));
         break;
-      case "Orange":
+      case "orange":
         setIcon((icon) => (icon = orangeIcon));
         break;
-      case "Red":
+      case "red":
         setIcon((icon) => (icon = redIcon));
         break;
       default:

@@ -1,6 +1,7 @@
 import logging
 from flask_restful import Api
 import json
+
 from models.shop import Starbucks 
 from database import db, app
 from resources.shops_resource import ShopsResource, SHOPS_ENDPOINT

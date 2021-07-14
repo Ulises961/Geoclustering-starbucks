@@ -1,18 +1,18 @@
 import MyMarker from "./Marker/marker";
 
-const Markers = ({ markers }) => {
-  return markers.map((marker, index) => {
+export default function Markers ({ markers}) {
+  console.log("Markers.js",markers);
+  return markers.map((marker) => {
     return (
       <MyMarker
-        position={[marker.Lat, marker.Lon]}
-        color={marker.Color}
-        key={([marker.Lat, marker.Lon, marker.Address], index)}
-        addr={marker.Address}
-        city={marker.City}
-        meters={marker.Sqmt}
+        position={[marker.lat, marker.lon]}
+        color={marker.color}
+        key={(marker.shop_id)}
+        addr={marker.address}
+        city={marker.city}
+        meters={marker.sqmt}
       />
     );
   });
 };
 
-export default Markers;

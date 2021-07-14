@@ -19,7 +19,7 @@ const Map = (props) => {
   useEffect(() => {
     if (!map || !props.shop) return;
 
-    map.setView([props.shop.Lat, props.shop.Lon], 15);
+    map.setView([props.shop.lat, props.shop.lon], 15);
   }, [Home, map]);
 
   const classes = useStyles();

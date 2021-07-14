@@ -1,6 +1,5 @@
 
-FROM node:10.16.0-alpine
-
+FROM node
 
 ENV PATH /front-end/node_modules/.bin:$PATH
 

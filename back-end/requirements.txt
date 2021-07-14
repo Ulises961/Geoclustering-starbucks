@@ -6,3 +6,4 @@ Flask_RESTful
 SQLAlchemy
 sklearn
 pandas
+flask-cors

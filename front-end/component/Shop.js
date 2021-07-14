@@ -26,7 +26,7 @@ Shop.propTypes= {
     city : PropTypes.string.isRequired,
     color : PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
-    sqmt: PropTypes.string.isRequired,
+    sqmt: PropTypes.number.isRequired,
     clicked: PropTypes.func.isRequired
 };
 

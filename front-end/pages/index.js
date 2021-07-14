@@ -6,18 +6,13 @@ import Layout, { siteTitle } from "../component/Layout/Layout";
 import Shop from "../component/Shop";
 import { Button, ButtonGroup,Box, Container,makeStyles } from "@material-ui/core";
 import PropTypes from 'prop-types';
-import originalPoints from './api/get-shops'
-import kOrganizedPoints from './api/clustered-shops'
-// import calculateDBSCAN from "../lib/dbscan-clusters";
-// import kPoints from "../assets/points.json";
-// import calculateKMeans from "../lib/kmeans-clusters";
+import getShops from './api/getShops'
+import getClusteredShops from './api/clusteredShops'
 
+  export async function getServerSideProps() {
 
-export async function getStaticProps() {
- // const originalPoints = kPoints;
- // const kOrganizedPoints = calculateKMeans(originalPoints);
-  //const dbOrganizedPoints = calculateDBSCAN(originalPoints);
-
+  const originalPoints = await getShops();
+  const kOrganizedPoints = await getClusteredShops();
   const dbOrganizedPoints = kOrganizedPoints;
   return {
     props: { originalPoints, kOrganizedPoints, dbOrganizedPoints },
@@ -74,8 +69,8 @@ const useStyles = makeStyles({
 
 Home.propTypes  = {
   originalPoints: PropTypes.array.isRequired,
-  kOrganizedPoints: PropTypes.object.isRequired,
-  dbOrganizedPoints: PropTypes.object.isRequired
+  kOrganizedPoints: PropTypes.array.isRequired,
+  dbOrganizedPoints: PropTypes.array.isRequired
   
 };
 
@@ -85,6 +80,8 @@ export default function Home({
   dbOrganizedPoints,
 }) {
  
+  
+
   const MapWithNoSSR = dynamic(() => import("../component/Map/map"), {
     ssr: false,
   });
@@ -97,7 +94,9 @@ export default function Home({
     setShop(shop);
   };
 
+
   const classes = useStyles();
+
 
   return (
     <Layout home>
@@ -127,10 +126,10 @@ export default function Home({
               color="primary"
               aria-label="text primary button group"
             >
-              <Button onClick={() => setMarkers(kOrganizedPoints.markers)}>
+              <Button onClick={() => setMarkers(kOrganizedPoints)}>
                 Means Clustering
               </Button>
-              <Button onClick={() => setMarkers(dbOrganizedPoints.markers)}>
+              <Button onClick={() => setMarkers(dbOrganizedPoints)}>
                 DBScan
               </Button>
               <Button
@@ -144,21 +143,23 @@ export default function Home({
             </ButtonGroup>
           </Box>
           <Scrollbars>
-            {markers.map((point, index) => {
+            {markers.map((point) => {
               return (
                 <Shop
-                  key={([point.Lat, point.Lon, point.Address], index)}
+                  key={point.shop_id}
                   clicked={() => findInMap(point)}
-                  city={point.City}
-                  address={point.Address}
-                  sqmt={point.Sqmt}
-                  color={point.Color}
+                  city={point.city}
+                  address={point.address}
+                  sqmt={point.sqmt}
+                  color={point.color}
                 />
               );
             })}
           </Scrollbars>
         </Box>
       </Box>
+   
+
     </Layout>
   );
 }
