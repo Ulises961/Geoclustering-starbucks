@@ -1,12 +1,11 @@
 ## Unreleased
 
 ## Added 
-- Dockerfile
 - Front-end / Back-end tree structure
-- API implementation through Flask and SQLAlchemy
+- RESTful API implementation through Flask and SQLAlchemy
 
 ## Changed
-
+-Application run in containers through Docker-compose
 - .gitignore to ignore folders in the new structure ì
 
 
