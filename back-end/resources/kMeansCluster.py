@@ -2,7 +2,7 @@ import logging
 from flask_restful import Resource
 import os
 import sys
-
+from . import app
 sys.path.append(os.path.realpath('.'))
 from models.shop import Starbucks
 from schemas.shopSchema import ShopSchema
@@ -14,6 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 class ClusterisedShopsResource(Resource):
+    
     def get(self):
         """
         ShopsResource GET method. Retrieves all shops found in the shops database, 
@@ -44,3 +45,5 @@ class ClusterisedShopsResource(Resource):
             shop_json.append(ShopSchema().dump(shop))
             print(shop)
         return shop_json
+
+    

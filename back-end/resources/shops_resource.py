@@ -27,12 +27,12 @@ class ShopsResource(Resource):
         :return: Shop, 200 HTTP status code
         """
         if not id:
-            city = request.args.get("city")
+            id = request.args.get("id")
             logger.info(
-                f"Retrieving all shops, optionally filtered by city={city}"
+                f"Retrieving all shops, optionally filtered by id={id}"
             )
 
-            return self._get_all_shops(city), 200
+            return self._get_all_shops(id), 200
 
         logger.info(f"Retrieving shop by id {id}")
 
@@ -51,9 +51,9 @@ class ShopsResource(Resource):
         logger.info(f"Shop retrieved from database {shop_json}")
         return shop_json
 
-    def _get_all_shops(self, city):
-        if city:
-            shops = Starbucks.query.filter_by(city=city).all()
+    def _get_all_shops(self, id):
+        if id:
+            shops = Starbucks.query.filter_by(id=id).all()
         else:
             shops = Starbucks.query.all()
 
