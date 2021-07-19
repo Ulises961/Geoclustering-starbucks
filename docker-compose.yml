@@ -42,6 +42,7 @@ services:
       - EMAIL=ulyses.sosa@gmail.com
       - URL=ulises-codes.me
       - ONLY_SUBDOMAINS=true
+      - STAGING=DRY-RUN 
       - TZ=Italy/Rome
     depends_on:
       - api
