@@ -27,17 +27,26 @@ services:
       
     
   nginx:
-    build:
-        context: ./nginx
-        dockerfile: Dockerfile
-    restart: unless-stopped
+    image: linuxserver/letsencrypt
+    container_name: nginx
     ports:
-      - 8080:8080
-    
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/config/nginx/nginx.conf
+      - ./dev.conf:/config/nginx/site-confs/default
+    environment:
+      - PUID=1050
+      - PGID=1050
+      - EMAIL=ulyses.sosa@gmail.com
+      - URL=ulises-codes.me
+      - ONLY_SUBDOMAINS=true
+      - TZ=Italy/Rome
     depends_on:
       - api
       - client
-
+      
   client:
     build:
         context: ./front-end
@@ -47,9 +56,6 @@ services:
 
     ports:
       - 3000:3000
-    environment:
-      - NODE_ENV=development
-      - REACT_APP_SERVICE_URL=http://localhost:8080
-      - CHOKIDAR_USEPOLLING=true
+    
     depends_on:
       - api

@@ -2,7 +2,7 @@ import logging
 from flask_restful import Resource
 import os
 import sys
-from . import app
+
 sys.path.append(os.path.realpath('.'))
 from models.shop import Starbucks
 from schemas.shopSchema import ShopSchema
