@@ -27,15 +27,15 @@ services:
       
     
   nginx:
-    image: linuxserver/letsencrypt
+    image: linuxserver/swag
     container_name: nginx
     ports:
       - 80:80
       - 443:443
     restart: unless-stopped
     volumes:
-      - ./nginx.conf:/config/nginx/nginx.conf
-      - ./dev.conf:/config/nginx/site-confs/default
+      - .nginx.conf:/config/nginx/nginx.conf
+      - .dev.conf:/config/nginx/site-confs/default
     environment:
       - PUID=1050
       - PGID=1050
