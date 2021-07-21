@@ -1,11 +1,13 @@
 import logging
-from flask_restful import Api
 import json
-
-from models.shop import Starbucks 
-from database import db, app
-from resources.shops_resource import ShopsResource, SHOPS_ENDPOINT
-from resources.kMeansCluster import ClusterisedShopsResource, KSHOPS_ENDPOINT
+import os
+from flask import Flask
+from models.shop import Starbucks
+from models.user import Users
+import extensions
+from extensions import db
+import resources
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 logger = logging.getLogger(__name__)
 
@@ -15,32 +17,26 @@ def create_app():
     This function creates the Flask app, Flask-RESTful API, and Flask-SQLAlchemy connection
     :param db_location : Connection string to the  database
     :return Initialized Flask App"""
+   
+    env_flask_config_name = os.getenv('APP_SETTINGS')
 
-    logging.basicConfig(
-        level=logging.DEBUG,
-        format="%(asctime)s %(name)-12s %(levelname)-8s %(message)s",
-        datefmt="%d-%m %H:%M",
-        handlers=[
-            logging.FileHandler("shops_api.log"),
-            logging.StreamHandler()
-        ],
-    )
-    
+    app = Flask(__name__, instance_relative_config=True)
+    app.wsgi_app = ProxyFix(app.wsgi_app)
+    app.config.from_object(env_flask_config_name)
 
-    populate_db()
-     
-    db.init_app(app)
+    extensions.init_app(app)
+    resources.initiate_app(app)
 
-    api = Api(app)
-    api.add_resource(ShopsResource, SHOPS_ENDPOINT, f"{SHOPS_ENDPOINT}/<id>")
-    api.add_resource(ClusterisedShopsResource, SHOPS_ENDPOINT,
-                     f"{KSHOPS_ENDPOINT}")
+    populate_db(app)
+    seed_db(app)
+
+
     return app
 
-def populate_db():
-
+def populate_db(app):
+    
     logger.info("initializing db")
-
+    app.app_context().push()
     db.create_all()
 
     shops = open('database/points.json', 'r')
@@ -59,9 +55,19 @@ def populate_db():
     
         db.session.add(shop)
     db.session.commit()
+    
+def seed_db(app):
+
+    """Seeds the database."""
+    app.app_context().push()
+    db.session.add(
+        Users(username='admin',
+              email='admin@gmail.com',
+              password='verysecurepassword'))
+    db.session.commit()
+
 
 
 if __name__ == "__main__":
     app = create_app()
     app.run(debug=True,host='0.0.0.0')
-    logger.info(ShopsResource.get())

@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append(os.path.realpath('.'))
-from database import db
+from extensions import db
 
 
 class Starbucks(db.Model):

@@ -1,20 +1,21 @@
 import logging
 
-from flask import request
-from flask_restful import Resource, abort
+from flask import request, Blueprint
+from flask_restful import Resource, abort, Api
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 import os
 import sys
 sys.path.append(os.path.realpath('.'))
-from database import db
+from extensions import db
 from models.shop import Starbucks
 from schemas.shopSchema import ShopSchema
 
 
-SHOPS_ENDPOINT = "/api/shops"
 logger = logging.getLogger(__name__)
-
+SHOPS_ENDPOINT = '/api/shops'
+shops_blueprint = Blueprint('shops', __name__)
+api = Api(shops_blueprint)
 
 class ShopsResource(Resource):
     def get(self, id=None):
@@ -82,3 +83,4 @@ class ShopsResource(Resource):
         else:
             return shop.shop_id, 201
 
+api.add_resource(ShopsResource, SHOPS_ENDPOINT,f"{SHOPS_ENDPOINT}/<id>")

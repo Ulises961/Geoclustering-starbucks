@@ -1,5 +1,5 @@
 import logging
-from flask_restful import Resource
+from flask_restful import Resource, Api
 import os
 import sys
 
@@ -8,10 +8,12 @@ from models.shop import Starbucks
 from schemas.shopSchema import ShopSchema
 from sklearn import cluster
 import pandas as pd
+from flask import Blueprint
 
-KSHOPS_ENDPOINT = "/api/clustered-shops"
 logger = logging.getLogger(__name__)
 
+shops_kmeans_blueprint = Blueprint('shops_kmeans', __name__)
+api = Api(shops_kmeans_blueprint)
 
 class ClusterisedShopsResource(Resource):
     
@@ -46,4 +48,4 @@ class ClusterisedShopsResource(Resource):
             print(shop)
         return shop_json
 
-    
+api.add_resource(ClusterisedShopsResource,'/api/clustered-shops')

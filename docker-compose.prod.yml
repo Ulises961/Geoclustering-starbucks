@@ -11,10 +11,7 @@ services:
       - 5002:5000
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@mock-db:5432/shops
-      - FLASK_CONFIG=development
-      - FLASK_ENV=development
-      - APP_SETTINGS=config
-      - SECRET_KEY=ZQbn05PDeA7v11
+  
     depends_on: 
         - mock-db
 
@@ -28,13 +25,25 @@ services:
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=postgres
       
+    
   nginx:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-    restart: unless-stopped
+    image: linuxserver/swag
+    container_name: nginx
     ports:
-      - 8080:8080
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/config/nginx/nginx.conf
+      - ./dev.conf:/config/nginx/site-confs/default
+    environment:
+      - PUID=1050
+      - PGID=1050
+      - EMAIL=ulyses.sosa@gmail.com
+      - URL=ulises-codes.me
+      - ONLY_SUBDOMAINS=false
+      - STAGING=true 
+      - TZ=Italy/Rome
     depends_on:
       - api
       - client

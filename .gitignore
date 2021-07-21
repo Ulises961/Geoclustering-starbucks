@@ -37,3 +37,7 @@
 
 #python
 __pycache__
+
+#nginx 
+nginx.conf/
+dev.conf/
