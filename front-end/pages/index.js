@@ -94,6 +94,9 @@ export default function Index() {
         <Button className={classes.buttonRegister}>
           <Link className={classes.links} href="/authentication/register" >Register</Link>
         </Button>
+        <Button className={classes.buttonRegister}>
+          <Link className={classes.links} href="/home" >Home</Link>
+        </Button>
       </Container>
     </Box>
     </Layout>

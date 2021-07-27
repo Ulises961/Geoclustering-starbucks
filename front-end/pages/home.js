@@ -6,8 +6,8 @@ import Layout, { siteTitle } from "../component/Layout/Layout";
 import Shop from "../component/Shop";
 import { Button, ButtonGroup,Box, Container,makeStyles } from "@material-ui/core";
 import PropTypes from 'prop-types';
-// import getShops from './api/getShops'
-// import getClusteredShops from './api/clusteredShops'
+//import getShops from './api/getShops'
+//import getClusteredShops from './api/clusteredShops'
 import {ShopsInfoProvider} from './api/shopsInfoProvider';
 
   export async function getServerSideProps() {
