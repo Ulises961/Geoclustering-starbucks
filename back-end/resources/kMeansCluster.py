@@ -48,4 +48,4 @@ class ClusterisedShopsResource(Resource):
             print(shop)
         return shop_json
 
-api.add_resource(ClusterisedShopsResource,'/api/clustered-shops')
+api.add_resource(ClusterisedShopsResource,'/api/shops/kClustered')

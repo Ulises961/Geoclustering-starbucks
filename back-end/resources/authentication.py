@@ -24,7 +24,7 @@ def get_user_status(resp):
     response_object = {
         'status': 'success',
         'message': 'success',
-        'data': user.to_json()
+        'data': UserSchema().dump(user)['active']
     }
     return jsonify(response_object), 200
 
@@ -32,28 +32,32 @@ def get_user_status(resp):
 @auth_blueprint.route('/api/v1/auth/login', methods=['POST'])
 def login_user():
     post_data = request.get_json()
+    
     response_object = {'status': 'fail', 'message': 'Invalid payload'}
     if not post_data:
         return jsonify(response_object), 400
-
+   
     username = post_data.get('username')
     password = post_data.get('password')
     try:
         user = Users.query.filter_by(username=username).first()
         if user and bcrypt.check_password_hash(user.password, password):
-            auth_token = user.encode_auth_token(user.id)
+            auth_token = user.encode_auth_token(user.user_id)
+            log.debug(UserSchema().dump(user))
             if auth_token:
                 response_object = {
                     'status': 'success',
                     'message': 'Successfully logged in',
-                    'auth_token': auth_token.decode()
+                    'auth_token': auth_token
                 }
+                log.debug(Users.decode_auth_token(auth_token))
                 return jsonify(response_object), 200
         else:
             response_object['message'] = 'User does not exist'
             return jsonify(response_object), 404
     except Exception as e:
         log.error(e)
+      
         response_object['message'] = 'Try again.'
         return jsonify(response_object), 500
 
@@ -87,7 +91,7 @@ def register_user():
 
             new_user = UserSchema().create_user(username=username, email=email, password=password)
             # generate auth token
-            auth_token = new_user.encode_auth_token(new_user.id)
+            auth_token = new_user.encode_auth_token(new_user.user_id)
             response_object['status'] = 'success'
             response_object['message'] = 'Successfully registered.'
             response_object['auth_token'] = auth_token.decode()

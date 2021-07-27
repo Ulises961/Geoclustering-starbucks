@@ -1,4 +1,3 @@
-from http import HTTPStatus
 from functools import wraps
 from flask import request, jsonify
 from models.user import Users
@@ -22,7 +21,7 @@ def authenticate(f):
             response_object['message'] = resp
             return jsonify(response_object), 401
 
-        user = Users.query.filter_by(id=resp).first()
+        user = Users.query.filter_by(user_id=resp).first()
         if not user or not user.active:
             return jsonify(response_object), 401
         return f(user, *args, **kwargs)
@@ -45,7 +44,7 @@ def authenticate_restful(f):
         if isinstance(resp, str):
             response_object['message'] = resp
             return response_object, 401
-        user = Users.query.filter_by(id=resp).first()
+        user = Users.query.filter_by(user_id=resp).first()
         if not user or not user.active:
             return response_object, 401
         return f(user, *args, **kwargs)

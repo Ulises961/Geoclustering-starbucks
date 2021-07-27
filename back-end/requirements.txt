@@ -9,4 +9,4 @@ pandas
 flask-cors
 sqlalchemy_utils
 flask_bcrypt
-jwt
+PyJWT

@@ -23,6 +23,8 @@ def create_app():
     app = Flask(__name__, instance_relative_config=True)
     app.wsgi_app = ProxyFix(app.wsgi_app)
     app.config.from_object(env_flask_config_name)
+    
+    # app.config.from_pyfile('flask.cfg') ## Testing purpose
 
     extensions.init_app(app)
     resources.initiate_app(app)
@@ -60,12 +62,16 @@ def seed_db(app):
 
     """Seeds the database."""
     app.app_context().push()
-    db.session.add(
-        Users(username='admin',
-              email='admin@gmail.com',
-              password='verysecurepassword'))
-    db.session.commit()
-
+    try:
+ 
+        db.session.add(
+            Users(username='administrator',
+                email='administrator@gmail.com',
+                password='verysecurepassword',
+                admin= True))
+        db.session.commit()
+    except Exception as error:
+        logger.exception(error)
 
 
 if __name__ == "__main__":
