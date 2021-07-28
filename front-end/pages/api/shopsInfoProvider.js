@@ -1,23 +1,23 @@
-import { BaseService } from "../../lib/baseService";
-const shopsEndpoint = "shops";
-export class ShopsInfoProvider extends BaseService {
+
+import { HttpService } from "./http";
+
+const authEndpoint = "http://nginx:8080/api";
+export class ShopsInfoProvider extends HttpService {
+ 
   constructor() {
-    super(shopsEndpoint);
+    super(authEndpoint);
   }
 
-  async getShops(resource = "") {
-    let response = await this.get(resource);
-    try {
-      if (response.success) return response.json();
-    } catch (error) {
-      console.error(error);
-    }
+  async getShops(resource = "/shops") {
+    let response = await this.get(resource).then(response => response.json()).catch((error,) => {
+      console.error("Error", error);
+    
+    });
+   
+    return response;
+  
   }
   async getKClusters() {
-    let response = this.getShops("kClustered").catch((error) => {
-      console.error("Error", error);
-    });
-
-    return response.json();
+    return this.getShops("/k-clustered-shops");
   }
-}
+} 

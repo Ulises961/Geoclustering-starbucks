@@ -11,7 +11,7 @@ def authenticate(f):
             'status': 'fail',
             'message': 'Provide a valid auth token.'
         }
-        auth_header = request.headers.get('Authorization')
+        auth_header = request.headers.get('Authorisation')
         if not auth_header:
             return jsonify(response_object), 403
 
@@ -36,7 +36,7 @@ def authenticate_restful(f):
             'status': 'fail',
             'message': 'Provide a valid auth token.'
         }
-        auth_header = request.headers.get('Authorization')
+        auth_header = request.headers.get('Authorisation')
         if not auth_header:
             return response_object, 403
         auth_token = auth_header.split(" ")[1]

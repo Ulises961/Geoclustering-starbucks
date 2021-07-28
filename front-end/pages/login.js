@@ -1,17 +1,17 @@
-import Layout from "../../component/Layout/Layout";
-import Cookies from "js-cookie";
+import Layout from "../component/Layout/Layout";
+
 import {
   Container,
   Card,
   CardHeader,
   CardContent,
   TextField,
-  Typography,
   makeStyles,
   Button,
 } from "@material-ui/core";
+import { Alert, AlertTitle } from '@material-ui/lab';
 import { useState } from "react";
-import { Authenticator } from "../api/authenticationServices";
+import { Authenticator } from "./api/authenticationServices";
 
 const useStyles = makeStyles({
   root: {
@@ -50,17 +50,18 @@ export default function Login() {
   const onSubmit = async (e) => {
     e.preventDefault();
     setIsError(false);
-    try {
-      const api = new Authenticator();
-      const response = await api.login( {username : username,  password: password});
-      if(response.ok)
-      console.log("sucess!!!!!", Cookies.get('SESSION_KEY'));
-      
-    } catch (err) {
-        console.log(err);
-      setIsError(true);
-    }
+
+    const api = new Authenticator();
+
+    await api
+      .login({ username: username, password: password })
+      .catch((error) => {
+        console.log("[login.js] Error while logging in ", error);
+        console.error(error);
+        setIsError(true);
+      });
   };
+
   const classes = useStyles();
   return (
     <Layout>
@@ -98,22 +99,15 @@ export default function Login() {
                 color="primary"
                 type="submit"
               >
-               
                 Submit
               </Button>
             </form>
             {isError && (
-                <div>
-        <TextField error id="standard-error" label="Error" defaultValue="Hello World" />
-        <TextField
-          error
-          id="standard-error-helper-text"
-          label="Error"
-          defaultValue="Hello World"
-          helperText="Incorrect entry."
-        />
-      </div>
-        )}
+              <Alert severity="error">
+                <AlertTitle>Error</AlertTitle>
+                Invalid Credentials — <strong>Try again</strong>
+              </Alert>
+            )}
           </CardContent>
         </Card>
       </Container>

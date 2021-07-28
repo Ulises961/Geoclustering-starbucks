@@ -1,24 +1,21 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Router from "next/router";
 import dynamic from "next/dynamic";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import Layout, { siteTitle } from "../component/Layout/Layout";
 import Shop from "../component/Shop";
-import { Button, ButtonGroup,Box, Container,makeStyles } from "@material-ui/core";
-import PropTypes from 'prop-types';
-//import getShops from './api/getShops'
-//import getClusteredShops from './api/clusteredShops'
-import {ShopsInfoProvider} from './api/shopsInfoProvider';
 
-  export async function getServerSideProps() {
-    const provider = new ShopsInfoProvider();
-  const originalPoints = provider.getShops();
-  const kOrganizedPoints = provider.getKClusters();
-  const dbOrganizedPoints = kOrganizedPoints;
-  return {
-    props: { originalPoints, kOrganizedPoints, dbOrganizedPoints },
-  };
-}
+import {
+  Button,
+  ButtonGroup,
+  Box,
+  Container,
+  makeStyles,
+} from "@material-ui/core";
+import PropTypes from "prop-types";
+import { ShopsInfoProvider } from "./api/shopsInfoProvider";
+import Cookies from "js-cookie";
 
 const useStyles = makeStyles({
   title: {
@@ -68,11 +65,23 @@ const useStyles = makeStyles({
   },
 });
 
-Home.propTypes  = {
+const Login = dynamic(() => import("./login"));
+
+export async function getServerSideProps(context) {
+  const provider = new ShopsInfoProvider();
+  const originalPoints = await provider.getShops();
+  const kOrganizedPoints = await provider.getKClusters();
+  const dbOrganizedPoints = kOrganizedPoints;
+
+  return {
+    props: { originalPoints, kOrganizedPoints, dbOrganizedPoints },
+  };
+}
+
+Home.propTypes = {
   originalPoints: PropTypes.array.isRequired,
   kOrganizedPoints: PropTypes.array.isRequired,
-  dbOrganizedPoints: PropTypes.array.isRequired
-  
+  dbOrganizedPoints: PropTypes.array.isRequired,
 };
 
 export default function Home({
@@ -80,12 +89,23 @@ export default function Home({
   kOrganizedPoints,
   dbOrganizedPoints,
 }) {
- 
-  
+  const session = Cookies.get("SESSION_KEY");
+  let loggedIn;
+  session ? loggedIn = true : loggedIn = false; 
 
-  const MapWithNoSSR = dynamic(() => import("../component/Map/map"), {
-    ssr: false,
-  });
+ useEffect(() => {
+  if (!session) {
+    Router.replace("/login");
+  } return;
+},[loggedIn]);
+
+  
+  const MapWithNoSSR = dynamic(
+    () => import("../component/Map/map"),
+    {
+      ssr: false,
+    }
+  );
 
   const [markers, setMarkers] = useState(originalPoints);
 
@@ -95,9 +115,7 @@ export default function Home({
     setShop(shop);
   };
 
-
   const classes = useStyles();
-
 
   return (
     <Layout home>
@@ -159,8 +177,6 @@ export default function Home({
           </Scrollbars>
         </Box>
       </Box>
-   
-
     </Layout>
   );
 }

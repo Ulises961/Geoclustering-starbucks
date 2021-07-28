@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Box, Button, ButtonGroup, Container, makeStyles } from "@material-ui/core";
+import { Box, Button, Container, makeStyles } from "@material-ui/core";
 import Link from '@material-ui/core/Link'
 import React from "react";
 import Layout, {siteTitle} from "../component/Layout/Layout";
@@ -89,10 +89,10 @@ export default function Index() {
         </Container>
         <Container className={classes.sections}>
         <Button className={classes.buttonLogin}>
-          <Link className={classes.links} href="/authentication/login">Log in</Link>
+          <Link className={classes.links} href="/login">Log in</Link>
         </Button>
         <Button className={classes.buttonRegister}>
-          <Link className={classes.links} href="/authentication/register" >Register</Link>
+          <Link className={classes.links} href="/register" >Register</Link>
         </Button>
         <Button className={classes.buttonRegister}>
           <Link className={classes.links} href="/home" >Home</Link>

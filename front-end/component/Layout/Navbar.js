@@ -8,9 +8,10 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
 import ApartmentIcon from "@material-ui/icons/Apartment";
-import { Toolbar, Typography, AppBar } from "@material-ui/core";
+import { Toolbar, Typography, AppBar, Link } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-
+import { Authenticator} from "../../pages/api/authenticationServices";
+import Router from "next/router";
 const useStyles = makeStyles({
   list: {
     width: 250,
@@ -34,7 +35,11 @@ export default function TemporaryDrawer() {
 
     setState({ [anchor]: open });
   };
+  const logoutHandler = async () => {
+    const api = new Authenticator();
+    await api.logout();
 
+  }
   const list = (anchor) => (
     <div
       className={clsx(classes.list, {
@@ -45,18 +50,19 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        <ListItem button key="Home">
+        <ListItem button key="Home" href="/">
+         
           <ListItemIcon>
             {" "}
             <HomeIcon />
           </ListItemIcon>
-          <ListItemText primary="Home" />
+          <ListItemText primary="Home" />  
         </ListItem>
-        <ListItem button key="About">
+        <ListItem button key="Logout" onClick={logoutHandler} >
           <ListItemIcon>
             <ApartmentIcon />
           </ListItemIcon>
-          <ListItemText primary="About" />
+          <ListItemText primary="Logout" />
         </ListItem>
       </List>
     </div>

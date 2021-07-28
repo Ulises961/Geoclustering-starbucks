@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 services:
   api:
@@ -6,7 +6,7 @@ services:
       context: ./back-end
       dockerfile: Dockerfile
     volumes:
-      - '/api'
+      - "/api"
     ports:
       - 5002:5000
     environment:
@@ -15,19 +15,19 @@ services:
       - FLASK_ENV=development
       - APP_SETTINGS=config
       - SECRET_KEY=ZQbn05PDeA7v11
-    depends_on: 
-        - mock-db
+    depends_on:
+      - mock-db
 
   mock-db:
     build:
       context: ./back-end/database
       dockerfile: Dockerfile
-    ports: 
-        - 5436:5432
-    environment: 
-        - POSTGRES_USER=postgres
-        - POSTGRES_PASSWORD=postgres
-      
+    ports:
+      - 5436:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
   nginx:
     build:
       context: ./nginx
@@ -38,16 +38,17 @@ services:
     depends_on:
       - api
       - client
-      
+
   client:
     build:
-        context: ./front-end
-        dockerfile: Dockerfile
+      context: ./front-end
+      dockerfile: Dockerfile
     volumes:
-      - '/client'
-
+      - "/client"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
     ports:
       - 3000:3000
-    
+
     depends_on:
       - api
