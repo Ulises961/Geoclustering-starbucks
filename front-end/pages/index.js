@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Box, Button, Container, makeStyles } from "@material-ui/core";
-import Link from '@material-ui/core/Link'
+import { Box, Container, makeStyles } from "@material-ui/core";
 import React from "react";
 import Layout, {siteTitle} from "../component/Layout/Layout";
 
@@ -87,17 +86,7 @@ export default function Index() {
           <Box className={classes.title}>Geo-Clustering tool</Box>
           <Box className={classes.description}>- Reserved area - </Box>
         </Container>
-        <Container className={classes.sections}>
-        <Button className={classes.buttonLogin}>
-          <Link className={classes.links} href="/login">Log in</Link>
-        </Button>
-        <Button className={classes.buttonRegister}>
-          <Link className={classes.links} href="/register" >Register</Link>
-        </Button>
-        <Button className={classes.buttonRegister}>
-          <Link className={classes.links} href="/home" >Home</Link>
-        </Button>
-      </Container>
+        
     </Box>
     </Layout>
   );

@@ -13,5 +13,5 @@ class UserSchema(Schema):
     active = fields.Boolean(allow_none=False)
     admin = fields.Boolean(allow_none=False)
     @post_load
-    def create_user(self,data,**kwargs):
-        return Users(**data)
+    def create_user(self,username,password,email):
+        return Users(username=username,password=password,email=email)

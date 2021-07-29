@@ -32,11 +32,11 @@ def get_user_status(resp):
 @auth_blueprint.route('/api/v1/auth/login', methods=['POST'])
 def login_user():
     post_data = request.get_json()
-    
+
     response_object = {'status': 'fail', 'message': 'Invalid payload'}
     if not post_data:
         return jsonify(response_object), 400
-   
+
     username = post_data.get('username')
     password = post_data.get('password')
     try:
@@ -57,7 +57,7 @@ def login_user():
             return jsonify(response_object), 404
     except Exception as e:
         log.error(e)
-      
+
         response_object['message'] = 'Try again.'
         return jsonify(response_object), 500
 
@@ -69,7 +69,16 @@ def logout_user(resp):
         'status': 'success',
         'message': 'Successfully logged out'
     }
-    return jsonify(response_object), 200
+    try:
+        user = Users.query.filter_by(user_id=resp).first()
+        user.active = False
+        return jsonify(response_object), 200
+
+    except Exception as e:
+        log.error(e)
+
+        response_object['message'] = 'Try again.'
+        return jsonify(response_object), 500
 
 
 @auth_blueprint.route('/api/v1/auth/register', methods=['POST'])
@@ -87,15 +96,26 @@ def register_user():
         user = Users.query.filter(
             or_(Users.username == username, Users.email == email)).first()
         if not user:
-            # add new user to db
 
-            new_user = UserSchema().create_user(username=username, email=email, password=password)
-            # generate auth token
-            auth_token = new_user.encode_auth_token(new_user.user_id)
-            response_object['status'] = 'success'
-            response_object['message'] = 'Successfully registered.'
-            response_object['auth_token'] = auth_token.decode()
-            return jsonify(response_object), 200
+            # add new user to db
+            try:
+                new_user = Users(username=username,
+                                 email=email,
+                                 password=password,
+                                 admin=False)
+                db.session.add(new_user)
+                db.session.commit()
+                log.debug(UserSchema().dump(new_user))
+                # generate auth token
+                auth_token = new_user.encode_auth_token(new_user.user_id)
+
+                response_object['status'] = 'success'
+                response_object['message'] = 'Successfully registered.'
+                response_object['auth_token'] = auth_token
+                return jsonify(response_object), 200
+            except Exception as error:
+                log.exception(error)
+
         else:
             response_object['message'] = 'Sorry. That user already exists.'
             return jsonify(response_object), 400

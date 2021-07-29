@@ -54,7 +54,24 @@ export class Authenticator extends HttpService {
     Router.push("/");
   }
   async register(credentials) {
-    let response = await super.create("/register", credentials);
-    return response.success;
+    let response = await this.post("/register", JSON.stringify(credentials))
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Logging in");
+        if (result.status === "success") {
+          Cookies.set("SESSION_KEY", result.auth_token, {
+            expires: 1,
+            sameSite: "Lax",
+          });
+          Router.push("/home");
+        } else return result.message;
+      })
+      .catch((error) => {
+        console.log("AuthenticationService.js");
+        console.error(error);
+        throw error;
+      });
+
+    return response;
   }
 }

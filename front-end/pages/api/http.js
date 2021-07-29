@@ -1,28 +1,30 @@
 import Cookies from "js-cookie";
 
 export class HttpService {
-  
-  headers = {}
+  headers = {};
 
   constructor(url_prefix = "") {
     this.url_prefix = url_prefix;
- 
   }
 
   async get(url) {
-    let response = await fetch(this.url_prefix + url, {
-      method: "GET",
-      headers: this.getHeaders(),
-      redirect: "follow",
-    });
+    if (this.checkSession()) {
+      let apiToken = this.getSession();
 
-    return response;
+      let response = await fetch(this.url_prefix + url, {
+        method: "GET",
+        headers: {"Content-Type": "application/json " ,"Authorization": "Bearer " + `${apiToken}` },
+        redirect: "follow",
+      });
+
+      return response;
+    }
   }
 
   async post(url, body) {
     let response = await fetch(this.url_prefix + url, {
       method: "POST",
-      headers: this.getHeaders(),
+      headers: { "Content-Type": "application/json " },
       body: body,
       redirect: "follow",
     });
@@ -30,19 +32,6 @@ export class HttpService {
     return response;
   }
 
-  getHeaders() {
-    if (this.checkSession()) {
-      let apiToken = this.getSession();
-      this.headers = {...this.headers,
-        Authorization: "Bearer " + `${apiToken}`,
-      };
-      return this.headers;
-    }
-    this.headers = { ...this.headers,
-      "Content-Type": "application/json ",
-    };
-    return this.headers;
-  }
   getSession() {
     let session = Cookies.get("SESSION_KEY");
     if (session) {

@@ -17,19 +17,20 @@ class Users(db.Model,Timestamp):
     username = db.Column(db.String(128), nullable = False, unique=True)
     email = db.Column(db.String(128), nullable = False, unique=True)
     admin = db.Column(db.Boolean, default = False, nullable=False)
-    active = db.Column(db.Boolean, default = True, nullable=False)
+    active = db.Column(db.Boolean, default = False, nullable=False)
     password= db.Column(db.String(255),nullable=False)
     
     def __init__(self,
                 username:str,
                 password: str,
                 email: str = '',
-                admin: bool= False):
+                admin: bool = False):
         self.username = username
         self.password = bcrypt.generate_password_hash(
             password, current_app.config.get('BCRYPT_LOG_ROUNDS')).decode() # 4).decode() # 
         self.email = email
         self.admin = admin
+        self.active = True
 
 
     def encode_auth_token(self, user_id: int):
@@ -69,4 +70,3 @@ class Users(db.Model,Timestamp):
         except jwt.InvalidTokenError:
             return 'Invalid token. Please log in again.'
 
-        

@@ -7,7 +7,7 @@ const fetcher = (...args) => new HttpService(baseUrl).get(...args).then(response
 export default function pointsCollector(endPoint){
 
   const {data, error} = useSWR(endPoint, fetcher);
-  console.log("shops info provider",data);
+  console.log("shops info provider",error);
   return {
     points: data,
     isLoading: !error && !data,
