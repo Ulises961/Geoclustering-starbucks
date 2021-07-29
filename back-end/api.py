@@ -19,12 +19,11 @@ def create_app():
     :return Initialized Flask App"""
    
     env_flask_config_name = os.getenv('APP_SETTINGS')
-
+    logger.debug(env_flask_config_name)
     app = Flask(__name__, instance_relative_config=True)
     app.wsgi_app = ProxyFix(app.wsgi_app)
     app.config.from_object(env_flask_config_name)
     
-    # app.config.from_pyfile('flask.cfg') ## Testing purpose
 
     extensions.init_app(app)
     resources.initiate_app(app)

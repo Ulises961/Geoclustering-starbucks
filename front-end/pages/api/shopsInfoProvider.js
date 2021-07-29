@@ -1,23 +1,16 @@
 
+import useSWR from "swr";
 import { HttpService } from "./http";
+const baseUrl = "http://localhost:8080/api"
+const fetcher = (...args) => new HttpService(baseUrl).get(...args).then(response => response.json());
 
-const authEndpoint = "http://nginx:8080/api";
-export class ShopsInfoProvider extends HttpService {
- 
-  constructor() {
-    super(authEndpoint);
-  }
+export default function pointsCollector(endPoint){
 
-  async getShops(resource = "/shops") {
-    let response = await this.get(resource).then(response => response.json()).catch((error,) => {
-      console.error("Error", error);
-    
-    });
-   
-    return response;
-  
+  const {data, error} = useSWR(endPoint, fetcher);
+  console.log("shops info provider",data);
+  return {
+    points: data,
+    isLoading: !error && !data,
+    isError: error
   }
-  async getKClusters() {
-    return this.getShops("/k-clustered-shops");
-  }
-} 
+}

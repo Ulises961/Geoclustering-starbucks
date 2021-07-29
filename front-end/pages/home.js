@@ -2,20 +2,10 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import Router from "next/router";
 import dynamic from "next/dynamic";
-import { Scrollbars } from "react-custom-scrollbars-2";
 import Layout, { siteTitle } from "../component/Layout/Layout";
-import Shop from "../component/Shop";
-
-import {
-  Button,
-  ButtonGroup,
-  Box,
-  Container,
-  makeStyles,
-} from "@material-ui/core";
-import PropTypes from "prop-types";
-import { ShopsInfoProvider } from "./api/shopsInfoProvider";
+import { Box, Container, makeStyles } from "@material-ui/core";
 import Cookies from "js-cookie";
+import SidebarLoader from "../component/Layout/Sidebar";
 
 const useStyles = makeStyles({
   title: {
@@ -41,20 +31,6 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
     height: "100vh",
   },
-  sidebar: {
-    minHeight: "50vh",
-    padding: "0 0.5rem",
-    justifyContent: "center",
-    alignSelf: "right",
-    height: "70vh",
-    flex: "1 1 40%",
-    margin: " 1rem 1rem",
-  },
-  buttonset: {
-    display: "flex",
-    flexDirection: "row",
-    alignContent: "center safe",
-  },
   map: {
     padding: "0 0.5rem",
     justifyContent: "center",
@@ -65,51 +41,25 @@ const useStyles = makeStyles({
   },
 });
 
-const Login = dynamic(() => import("./login"));
-
-export async function getServerSideProps(context) {
-  const provider = new ShopsInfoProvider();
-  const originalPoints = await provider.getShops();
-  const kOrganizedPoints = await provider.getKClusters();
-  const dbOrganizedPoints = kOrganizedPoints;
-
-  return {
-    props: { originalPoints, kOrganizedPoints, dbOrganizedPoints },
-  };
-}
-
-Home.propTypes = {
-  originalPoints: PropTypes.array.isRequired,
-  kOrganizedPoints: PropTypes.array.isRequired,
-  dbOrganizedPoints: PropTypes.array.isRequired,
-};
-
-export default function Home({
-  originalPoints,
-  kOrganizedPoints,
-  dbOrganizedPoints,
-}) {
+export default function Home() {
   const session = Cookies.get("SESSION_KEY");
-  let loggedIn;
-  session ? loggedIn = true : loggedIn = false; 
 
- useEffect(() => {
-  if (!session) {
-    Router.replace("/login");
-  } return;
-},[loggedIn]);
+  let loggedIn = false;
+  session ? (loggedIn = true) : (loggedIn = false);
 
-  
-  const MapWithNoSSR = dynamic(
-    () => import("../component/Map/map"),
-    {
-      ssr: false,
-    }
-  );
-
-  const [markers, setMarkers] = useState(originalPoints);
+  const [markers, setMarkers] = useState(null);
 
   const [shop, setShop] = useState(null);
+
+  useEffect(() => {
+    if (!loggedIn) {
+      Router.replace("/login");
+    }
+  }, [loggedIn]);
+
+  const MapWithNoSSR = dynamic(() => import("../component/Map/map"), {
+    ssr: false,
+  });
 
   const findInMap = (shop) => {
     setShop(shop);
@@ -125,58 +75,28 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Container maxWidth="lg" component="section">
-        <Box className={classes.title}>Starbucks in the world</Box>
-        <Box className={classes.description}>
-          - Application of DBScan and K-Means algorithms -
-        </Box>
-      </Container>
+      {loggedIn && (
+        <>
+          <Container maxWidth="lg" component="section">
+            <Box className={classes.title}>Starbucks in the world</Box>
+            <Box className={classes.description}>
+              - Application of K-Means algorithm -
+            </Box>
+          </Container>
+          <Box className={classes.infoblock}>
+            <Box className={classes.map}>
+              <MapWithNoSSR markers={markers} shop={shop} />
+            </Box>
 
-      <Box className={classes.infoblock}>
-        <Box className={classes.map}>
-          <MapWithNoSSR markers={markers} shop={shop} />
-        </Box>
-
-        <Box className={classes.sidebar}>
-          <Box className={classes.buttonset}>
-            <ButtonGroup
-              variant="text"
-              size="large"
-              color="primary"
-              aria-label="text primary button group"
-            >
-              <Button onClick={() => setMarkers(kOrganizedPoints)}>
-                Means Clustering
-              </Button>
-              <Button onClick={() => setMarkers(dbOrganizedPoints)}>
-                DBScan
-              </Button>
-              <Button
-                onClick={() => {
-                  setMarkers(originalPoints);
-                  setShop(null);
-                }}
-              >
-                Reset
-              </Button>
-            </ButtonGroup>
+            <SidebarLoader
+              markers={markers}
+              setMarkers={setMarkers}
+              findInMap={findInMap}
+              setShop={setShop}
+            />
           </Box>
-          <Scrollbars>
-            {markers.map((point) => {
-              return (
-                <Shop
-                  key={point.shop_id}
-                  clicked={() => findInMap(point)}
-                  city={point.city}
-                  address={point.address}
-                  sqmt={point.sqmt}
-                  color={point.color}
-                />
-              );
-            })}
-          </Scrollbars>
-        </Box>
-      </Box>
+        </>
+      )}
     </Layout>
   );
 }

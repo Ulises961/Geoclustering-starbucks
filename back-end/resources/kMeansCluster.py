@@ -2,7 +2,7 @@ import logging
 from flask_restful import Resource, Api
 import os
 import sys
-
+from .utils import authenticate_restful
 sys.path.append(os.path.realpath('.'))
 from models.shop import Starbucks
 from schemas.shopSchema import ShopSchema
@@ -16,7 +16,7 @@ shops_kmeans_blueprint = Blueprint('shops_kmeans', __name__)
 api = Api(shops_kmeans_blueprint)
 
 class ClusterisedShopsResource(Resource):
-    
+    @authenticate_restful
     def get(self):
         """
         ShopsResource GET method. Retrieves all shops found in the shops database, 

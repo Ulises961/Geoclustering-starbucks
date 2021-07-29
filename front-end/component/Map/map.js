@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import Cluster from "../Markers/markers";
-import Home from "../../pages";
-import { makeStyles } from "@material-ui/core";
 
+import { makeStyles } from "@material-ui/core";
+import SidebarLoader from "../Layout/Sidebar";
+import Home from "../../pages/home";
 
 const useStyles = makeStyles({
   map:{
@@ -38,7 +39,7 @@ const Map = (props) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      <Cluster markers={props.markers} />
+      {props.markers &&(<Cluster markers={props.markers} />)}
     </MapContainer>
   );
 };

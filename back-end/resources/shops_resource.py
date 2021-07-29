@@ -10,7 +10,7 @@ sys.path.append(os.path.realpath('.'))
 from extensions import db
 from models.shop import Starbucks
 from schemas.shopSchema import ShopSchema
-
+from .utils import authenticate_restful
 
 logger = logging.getLogger(__name__)
 SHOPS_ENDPOINT = '/api/shops'
@@ -18,6 +18,7 @@ shops_blueprint = Blueprint('shops', __name__)
 api = Api(shops_blueprint)
 
 class ShopsResource(Resource):
+    @authenticate_restful
     def get(self, id=None):
         """
         ShopsResource GET method. Retrieves all shops found in the shops database, 

@@ -27,15 +27,15 @@ class Users(db.Model,Timestamp):
                 admin: bool= False):
         self.username = username
         self.password = bcrypt.generate_password_hash(
-            password, 4).decode() # current_app.config.get('BCRYPT_LOG_ROUNDS')).decode() #
+            password, current_app.config.get('BCRYPT_LOG_ROUNDS')).decode() # 4).decode() # 
         self.email = email
         self.admin = admin
 
 
     def encode_auth_token(self, user_id: int):
         try: 
-            exp_days =  7 # current_app.config.get('TOKEN_EXPIRATION_DAYS') #
-            exp_sec =  0 # current_app.config.get('TOKEN_EXPIRATION_SECONDS') #
+            exp_days =  current_app.config.get('TOKEN_EXPIRATION_DAYS') # 7 # 
+            exp_sec = current_app.config.get('TOKEN_EXPIRATION_SECONDS') #  0 # 
             payload = {
                 'exp': 
                 datetime.datetime.utcnow() + 
@@ -46,7 +46,7 @@ class Users(db.Model,Timestamp):
                 user_id
             }
             return jwt.encode(payload,
-           "ZQbn05PDeA7v11", # current_app.config.get('SECRET_KEY'), # 
+          current_app.config.get('SECRET_KEY'), #  "ZQbn05PDeA7v11", # 
             algorithm='HS256')
         except Exception as e:
             return e
@@ -61,7 +61,7 @@ class Users(db.Model,Timestamp):
         try:
            
             payload = jwt.decode(auth_token,
-             "ZQbn05PDeA7v11", algorithms="HS256") #   current_app.config.get('SECRET_KEY')) # 
+              current_app.config.get('SECRET_KEY'), algorithms="HS256") #  ) #  "ZQbn05PDeA7v11"
            
             return payload['sub']
         except jwt.ExpiredSignatureError:

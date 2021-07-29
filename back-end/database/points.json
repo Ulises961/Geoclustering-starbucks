@@ -5,7 +5,7 @@
         "sqmt": 113,
         "city": "Moravia",
         "address": "Mall Lincoln Plaza San Vicente, Local # 232",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 4.38,
@@ -13,7 +13,7 @@
         "sqmt": 88,
         "city": "Brussels",
         "address": "Rue de la Loi, Rond-point Robert Schuman",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 4.35,
@@ -21,7 +21,7 @@
         "sqmt": 133,
         "city": "Brussels",
         "address": "Guldenvlieslaan",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 4.33,
@@ -29,7 +29,7 @@
         "sqmt": 65,
         "city": "Brussels",
         "address": "Frankrijkstraat & Fonsnylaan",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 4.41,
@@ -37,7 +37,7 @@
         "sqmt": 88,
         "city": "Brussels",
         "address": "Montgomery, Woluwe-Saint-Pierre",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 4.4,
@@ -45,7 +45,7 @@
         "sqmt": 125,
         "city": "Antwerp",
         "address": "Groenplaats 13",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 4.36,
@@ -53,7 +53,7 @@
         "sqmt": 171,
         "city": "Brussels",
         "address": "Grand Place de Bruxelles 4, Couloir city 2",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 4.36,
@@ -61,7 +61,7 @@
         "sqmt": 141,
         "city": "Brussels",
         "address": "Boulevard du Jardin Botanique, Antwerp Centraal Railway Station",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 4.42,
@@ -69,7 +69,7 @@
         "sqmt": 71,
         "city": "Antwerp",
         "address": "Koningin Astridplein 27",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 3.19,
@@ -77,7 +77,7 @@
         "sqmt": 160,
         "city": "Brugges",
         "address": "Stationsplein 5, Brussels Centraal",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 4.36,
@@ -85,7 +85,7 @@
         "sqmt": 129,
         "city": "Brussels",
         "address": "Eurpoakruispunt",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 3.72,
@@ -93,7 +93,7 @@
         "sqmt": 165,
         "city": "Gent",
         "address": "Koningin Maria Hendrikaplein 1",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 3.72,
@@ -101,7 +101,7 @@
         "sqmt": 172,
         "city": "Gent",
         "address": "Korenmarkt 4",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 4.71,
@@ -109,7 +109,7 @@
         "sqmt": 185,
         "city": "Leuven",
         "address": "Martelarenplein 16",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 4.36,
@@ -117,7 +117,7 @@
         "sqmt": 55,
         "city": "Schaerbeek",
         "address": "Vooruitgangstraat 76, Brussels Airport - BRU",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 4.49,
@@ -125,7 +125,7 @@
         "sqmt": 199,
         "city": "Zaventem",
         "address": "Departure Hall, Brussels Airport - BRU",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 4.48,
@@ -133,7 +133,7 @@
         "sqmt": 102,
         "city": "Zaventem",
         "address": "Concourse A, Brussels Airport - BRU",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 4.48,
@@ -141,7 +141,7 @@
         "sqmt": 73,
         "city": "Zaventem",
         "address": "Concourse B",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 5.57,
@@ -149,7 +149,7 @@
         "sqmt": 95,
         "city": "Liege",
         "address": "2 Place de Guillemins",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 4.86,
@@ -157,7 +157,7 @@
         "sqmt": 119,
         "city": "Namur",
         "address": "Place de la Station",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 25.62,
@@ -165,7 +165,7 @@
         "sqmt": 125,
         "city": "Burgas",
         "address": "Stefan Stambolov Blvd & Transportna Str",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 23.43,
@@ -173,7 +173,7 @@
         "sqmt": 63,
         "city": "Sofia",
         "address": "Tsarigradsko Blvd",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 23.32,
@@ -181,7 +181,7 @@
         "sqmt": 123,
         "city": "Sofia",
         "address": "100 Cherni Vrah Blvd",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 23.32,
@@ -189,7 +189,7 @@
         "sqmt": 55,
         "city": "Sofia",
         "address": "Vas Lefski Bulvd and Gurko street",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 23.32,
@@ -197,7 +197,7 @@
         "sqmt": 93,
         "city": "Sofia",
         "address": "V Lefski Blvd & Frityof Nansen",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.05,
@@ -205,7 +205,7 @@
         "sqmt": 77,
         "city": "Aarau",
         "address": "Kasinogarten",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.31,
@@ -213,7 +213,7 @@
         "sqmt": 128,
         "city": "Baden",
         "address": "Bahnhofplatz",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.37,
@@ -221,7 +221,7 @@
         "sqmt": 82,
         "city": "Spreitenbach",
         "address": "Shopping Center Shoppi Tivoli",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 7.44,
@@ -229,7 +229,7 @@
         "sqmt": 117,
         "city": "Bern",
         "address": "Laupenstrasse 1",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 7.44,
@@ -237,7 +237,7 @@
         "sqmt": 184,
         "city": "Bern",
         "address": "Waaghausgasse 18",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 7.44,
@@ -245,7 +245,7 @@
         "sqmt": 78,
         "city": "Bern",
         "address": "Bahnhofplatz 10",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 7.37,
@@ -253,7 +253,7 @@
         "sqmt": 52,
         "city": "Bern",
         "address": "Gilberte-de-Courgenay-Platz 4",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 7.25,
@@ -261,7 +261,7 @@
         "sqmt": 99,
         "city": "Biel",
         "address": "Nidaugasse 45",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 7.59,
@@ -269,7 +269,7 @@
         "sqmt": 188,
         "city": "Basel",
         "address": "Theatergaesslein 17",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 7.6,
@@ -277,7 +277,7 @@
         "sqmt": 78,
         "city": "Basel",
         "address": "Hochbergerstrasse 70",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 7.59,
@@ -285,7 +285,7 @@
         "sqmt": 162,
         "city": "Basel",
         "address": "Rebgasse 2",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 7.59,
@@ -293,7 +293,7 @@
         "sqmt": 181,
         "city": "Basel",
         "address": "Centralbahnplatz 14",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 7.59,
@@ -301,7 +301,7 @@
         "sqmt": 136,
         "city": "Basel",
         "address": "Freie Strasse 89",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 7.16,
@@ -309,7 +309,7 @@
         "sqmt": 136,
         "city": "Fribourg",
         "address": "Rue de Romont 3",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 7.15,
@@ -317,7 +317,7 @@
         "sqmt": 198,
         "city": "Fribourg",
         "address": "Place de la Gare 1",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 6.14,
@@ -325,7 +325,7 @@
         "sqmt": 128,
         "city": "Geneve",
         "address": "Place de Cornavin 7",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 6.15,
@@ -333,7 +333,7 @@
         "sqmt": 168,
         "city": "Geneve",
         "address": "Cours de Rive 11",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 6.15,
@@ -341,7 +341,7 @@
         "sqmt": 94,
         "city": "Geneve",
         "address": "Quai des Bergues 23",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 6.14,
@@ -349,7 +349,7 @@
         "sqmt": 142,
         "city": "Geneve",
         "address": "Rue de Cornavin 2",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 6.14,
@@ -357,7 +357,7 @@
         "sqmt": 176,
         "city": "Geneve",
         "address": "Rue du Conseil General 11",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 6.14,
@@ -365,7 +365,7 @@
         "sqmt": 158,
         "city": "Geneve",
         "address": "Rue du Mont-Blanc 26",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 6.15,
@@ -373,7 +373,7 @@
         "sqmt": 151,
         "city": "Geneve",
         "address": "Place de Longemalle 14",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 6.11,
@@ -381,7 +381,7 @@
         "sqmt": 54,
         "city": "Le Grand Saconnex",
         "address": "Route de Laeroport 21",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.31,
@@ -389,7 +389,7 @@
         "sqmt": 124,
         "city": "Luzern",
         "address": "Pilatusstrasse 1",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.31,
@@ -397,7 +397,7 @@
         "sqmt": 107,
         "city": "Luzern",
         "address": "Rathausquai 9",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.82,
@@ -405,7 +405,7 @@
         "sqmt": 181,
         "city": "Rapperswil",
         "address": "Schmiedgasse 30",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 9.37,
@@ -413,7 +413,7 @@
         "sqmt": 189,
         "city": "St. Gallen",
         "address": "Bahnhofplatz 2",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 9.3,
@@ -421,7 +421,7 @@
         "sqmt": 83,
         "city": "St. Gallen",
         "address": "Zurcherstrasse 464",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 9.37,
@@ -429,7 +429,7 @@
         "sqmt": 166,
         "city": "St. Gallen",
         "address": "Bahnhofplatz 2",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 9.38,
@@ -437,7 +437,7 @@
         "sqmt": 77,
         "city": "St. Gallen",
         "address": "Marktgasse 9",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 6.63,
@@ -445,7 +445,7 @@
         "sqmt": 100,
         "city": "Lausanne",
         "address": "Rue St. Laurent 19",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 6.63,
@@ -453,7 +453,7 @@
         "sqmt": 53,
         "city": "Lausanne",
         "address": "Place de la gare 2",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 6.63,
@@ -461,7 +461,7 @@
         "sqmt": 89,
         "city": "Lausanne",
         "address": "Place de St. Francois 2",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 6.84,
@@ -469,7 +469,7 @@
         "sqmt": 193,
         "city": "Vevey",
         "address": "Place de la Gare 4",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.52,
@@ -477,7 +477,7 @@
         "sqmt": 64,
         "city": "Zug",
         "address": "Bahnhofplatz",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.52,
@@ -485,7 +485,7 @@
         "sqmt": 92,
         "city": "Zug",
         "address": "Baarerstrasse 22",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.56,
@@ -493,7 +493,7 @@
         "sqmt": 174,
         "city": "Thalwil",
         "address": "Gotthardstrasse 40",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.59,
@@ -501,7 +501,7 @@
         "sqmt": 62,
         "city": "Wallisellen",
         "address": "Einkaufszentrum Glatt",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.72,
@@ -509,7 +509,7 @@
         "sqmt": 197,
         "city": "Winterthur",
         "address": "Bahnhof/Bahnhofplatz Winterthur",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.73,
@@ -517,7 +517,7 @@
         "sqmt": 151,
         "city": "Winterthur",
         "address": "Marktgasse 61",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.54,
@@ -525,7 +525,7 @@
         "sqmt": 53,
         "city": "Zurich",
         "address": "Limmatstrasse 5",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.54,
@@ -533,7 +533,7 @@
         "sqmt": 107,
         "city": "Zurich",
         "address": "Limmatquai 144",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.55,
@@ -541,7 +541,7 @@
         "sqmt": 118,
         "city": "Zurich",
         "address": "Theaterstrasse 8",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.54,
@@ -549,7 +549,7 @@
         "sqmt": 186,
         "city": "Zurich",
         "address": "Bleicherweg 30",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.54,
@@ -557,7 +557,7 @@
         "sqmt": 56,
         "city": "Zurich",
         "address": "Rennweg 48, Halle Landesmuseum",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.54,
@@ -565,7 +565,7 @@
         "sqmt": 128,
         "city": "Zurich",
         "address": "Hauptbahnhof",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.54,
@@ -573,7 +573,7 @@
         "sqmt": 184,
         "city": "Zurich",
         "address": "Bahnhofplatz 6, Am Marktplatz",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.54,
@@ -581,7 +581,7 @@
         "sqmt": 122,
         "city": "Zurich",
         "address": "Schulstrasse 44",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.52,
@@ -589,7 +589,7 @@
         "sqmt": 63,
         "city": "Zurich",
         "address": "Kalanderplatz 1",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.53,
@@ -597,7 +597,7 @@
         "sqmt": 110,
         "city": "Zurich",
         "address": "Seestrasse 19",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.53,
@@ -605,7 +605,7 @@
         "sqmt": 52,
         "city": "Zurich",
         "address": "Europaallee 7",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.54,
@@ -613,7 +613,7 @@
         "sqmt": 176,
         "city": "Zurich",
         "address": "Fusslistrasse 4, Level Check-in 3",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.56,
@@ -621,7 +621,7 @@
         "sqmt": 60,
         "city": "Zurich",
         "address": "Airport Center",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.54,
@@ -629,7 +629,7 @@
         "sqmt": 118,
         "city": "Zurich",
         "address": "Max Bill-Platz 15",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.56,
@@ -637,7 +637,7 @@
         "sqmt": 58,
         "city": "Zurich",
         "address": "Zurich Airport A Pier 2",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.53,
@@ -645,7 +645,7 @@
         "sqmt": 78,
         "city": "Zurich",
         "address": "Badenerstrasse 21, Level Check-in 1",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.56,
@@ -653,7 +653,7 @@
         "sqmt": 161,
         "city": "Zurich",
         "address": "Airside Center Landside",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.54,
@@ -661,7 +661,7 @@
         "sqmt": 180,
         "city": "Zurich",
         "address": "Limmatquai 4",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.55,
@@ -669,7 +669,7 @@
         "sqmt": 173,
         "city": "Zurich",
         "address": "Zurich Airport Pier E, Airside Non-Schengen",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.54,
@@ -677,7 +677,7 @@
         "sqmt": 50,
         "city": "Zurich",
         "address": "Hotzestrasse 65",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 8.55,
@@ -685,7 +685,7 @@
         "sqmt": 72,
         "city": "Zurich",
         "address": "Kreuzplatz 22",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 16.32,
@@ -693,7 +693,7 @@
         "sqmt": 197,
         "city": "Vosendorf",
         "address": "SCS-Strasse",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 13.01,
@@ -701,7 +701,7 @@
         "sqmt": 193,
         "city": "Salzburg",
         "address": "Europastrasse 1",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 13.04,
@@ -709,7 +709,7 @@
         "sqmt": 124,
         "city": "Salzburg",
         "address": "Hagenauerplatz 1",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 13.05,
@@ -717,7 +717,7 @@
         "sqmt": 143,
         "city": "Salzburg",
         "address": "Sudtiroler Platz 13",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 16.56,
@@ -725,7 +725,7 @@
         "sqmt": 118,
         "city": "Schwechat",
         "address": "Wien-Flughafen",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 16.35,
@@ -733,7 +733,7 @@
         "sqmt": 80,
         "city": "Wien",
         "address": "Neubaugasse 4",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 16.39,
@@ -741,7 +741,7 @@
         "sqmt": 153,
         "city": "Wien",
         "address": "Handelskai 94-96",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 16.38,
@@ -749,7 +749,7 @@
         "sqmt": 177,
         "city": "Wien",
         "address": "Bahnhof city Wien Hauptbahnhof",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 16.37,
@@ -757,7 +757,7 @@
         "sqmt": 142,
         "city": "Wien",
         "address": "Braunerstrasse 2",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 16.37,
@@ -765,7 +765,7 @@
         "sqmt": 102,
         "city": "Wien",
         "address": "Reitschulgasse 4",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 16.35,
@@ -773,7 +773,7 @@
         "sqmt": 184,
         "city": "Wien",
         "address": "Waehringer Guertel 18-20",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 16.36,
@@ -781,7 +781,7 @@
         "sqmt": 157,
         "city": "Wien",
         "address": "Mariahilfer Strasse 23-25",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 16.38,
@@ -789,7 +789,7 @@
         "sqmt": 80,
         "city": "Wien",
         "address": "Rotenturmstrasse 22",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 16.39,
@@ -797,7 +797,7 @@
         "sqmt": 159,
         "city": "Wien",
         "address": "Invalidenstrasse 11",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 16.43,
@@ -805,7 +805,7 @@
         "sqmt": 153,
         "city": "Wien",
         "address": "Wagramer Strasse 81",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 16.34,
@@ -813,7 +813,7 @@
         "sqmt": 110,
         "city": "Wien",
         "address": "Bahnhof city Wien West",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 16.36,
@@ -821,7 +821,7 @@
         "sqmt": 88,
         "city": "Wien",
         "address": "Schottengasse 9",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 16.37,
@@ -829,7 +829,7 @@
         "sqmt": 106,
         "city": "Wien",
         "address": "Karlsplatz Hauptpassage",
-        "color": "Blue"
+        "color": "blue"
     },
     {
         "lon": 1.53,
@@ -837,6 +837,6 @@
         "sqmt": 181,
         "city": "Andorra la Vella",
         "address": "Av. Meritxell, 96",
-        "color": "Blue"
+        "color": "blue"
     }
 ]

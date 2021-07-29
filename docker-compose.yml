@@ -13,7 +13,7 @@ services:
       - DATABASE_URL=postgresql://postgres:postgres@mock-db:5432/shops
       - FLASK_CONFIG=development
       - FLASK_ENV=development
-      - APP_SETTINGS=config
+      - APP_SETTINGS=config.DevelopmentConfig
       - SECRET_KEY=ZQbn05PDeA7v11
     depends_on:
       - mock-db
