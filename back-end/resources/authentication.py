@@ -2,7 +2,7 @@ import logging
 from flask import Blueprint, request, jsonify
 from sqlalchemy import exc, or_
 from extensions import db, bcrypt
-from .utils import authenticate
+from .utils import authenticate, authenticate_restful
 from schemas.userSchema import UserSchema
 from models.user import Users
 
@@ -64,14 +64,15 @@ def login_user():
 
 @auth_blueprint.route('/api/v1/auth/logout', methods=['GET'])
 @authenticate
-def logout_user(resp):
+def logout_user(user):
     response_object = {
         'status': 'success',
         'message': 'Successfully logged out'
     }
     try:
-        user = Users.query.filter_by(user_id=resp).first()
+       
         user.active = False
+        log.debug("user log out %s",user)
         return jsonify(response_object), 200
 
     except Exception as e:

@@ -12,7 +12,7 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@mock-db:5432/shops
       - FLASK_CONFIG=production
-      - FLASK_ENV=development
+      - FLASK_ENV=production
       - APP_SETTINGS=config.ProductionConfig
       - SECRET_KEY=ZQbn05PDeA7v11
     depends_on: 
@@ -37,8 +37,8 @@ services:
       - 443:443
     restart: unless-stopped
     volumes:
-      - ./nginx.conf:/config/nginx/nginx.conf
-      - ./prod.conf:/config/nginx/site-confs/default
+
+      - ~/Mock/nginx/prod.conf:/config/nginx/site-confs/default
     environment:
       - PUID=1050
       - PGID=1050
@@ -47,6 +47,7 @@ services:
       - ONLY_SUBDOMAINS=false
       - STAGING=true 
       - TZ=Italy/Rome
+      - VALIDATION=http
     depends_on:
       - api
       - client
@@ -61,7 +62,7 @@ services:
     ports:
       - 3000:3000
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
       - REACT_APP_SERVICE_URL=http://localhost:8080
       - CHOKIDAR_USEPOLLING=true
     depends_on:
