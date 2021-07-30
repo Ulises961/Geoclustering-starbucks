@@ -29,15 +29,14 @@ services:
         - POSTGRES_PASSWORD=postgres
       
     
-  nginx:
+  swag:
     image: linuxserver/swag
-    container_name: nginx
+    container_name: swag
     ports:
       - 80:80
       - 443:443
     restart: unless-stopped
     volumes:
-
       - ~/Mock/nginx/prod.conf:/config/nginx/site-confs/default
     environment:
       - PUID=1050
@@ -48,6 +47,7 @@ services:
       - STAGING=true 
       - TZ=Italy/Rome
       - VALIDATION=http
+      
     depends_on:
       - api
       - client
@@ -62,7 +62,7 @@ services:
     ports:
       - 3000:3000
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
       - REACT_APP_SERVICE_URL=http://localhost:8080
       - CHOKIDAR_USEPOLLING=true
     depends_on:
