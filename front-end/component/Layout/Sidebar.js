@@ -5,33 +5,40 @@ import { Button, ButtonGroup, Box, makeStyles } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import { useEffect } from "react";
-import Home from "../../pages/home";
-import { set } from "js-cookie";
-const useStyles = makeStyles((theme) => ({
+
+const useStyles = makeStyles({
   circle: {
     display: "flex",
     justifyItems: "center",
     "& > * + *": {
-      alignSelf:"center safe",
+      alignSelf: "center safe",
     },
   },
+ 
   sidebar: {
     minHeight: "50vh",
     padding: "0 0.5rem",
     justifyContent: "center",
     alignSelf: "right",
-    height: "70vh",
+    height: "60vh",
     flex: "1 1 40%",
     margin: " 1rem 1rem",
+
+  },
+  clear: {
+    display:"block",
+    clear:"both"
   },
   buttonset: {
     display: "flex",
     flexDirection: "row",
     alignContent: "center safe",
   },
-}));
+
+});
 
 function Sidebar({
+  markers,
   originalPoints,
   kOrganizedPoints,
   setMarkers,
@@ -39,7 +46,9 @@ function Sidebar({
   findInMap,
 }) {
   const classes = useStyles();
-  useEffect(()=> setMarkers(originalPoints),[])
+
+  useEffect(() => setMarkers(originalPoints), []);
+
   return (
     <Box className={classes.sidebar}>
       <Box className={classes.buttonset}>
@@ -68,20 +77,25 @@ function Sidebar({
           </Button>
         </ButtonGroup>
       </Box>
+
       <Scrollbars>
-        {originalPoints.map((point) => {
-          return (
-            <Shop
-              key={point.shop_id}
-              clicked={() => findInMap(point)}
-              city={point.city}
-              address={point.address}
-              sqmt={point.sqmt}
-              color={point.color}
-            />
-          );
-        })}
+        {markers !== null &&
+          markers.map((point) => {
+            console.log(point.color);
+            return (
+              <Shop
+                key={point.shop_id}
+                clicked={() => findInMap(point)}
+                city={point.city}
+                address={point.address}
+                sqmt={point.sqmt}
+                color={point.color}
+              />
+            );
+          })}
+        
       </Scrollbars>
+      <div className={classes.clear}></div>
     </Box>
   );
 }
@@ -92,7 +106,7 @@ function Spinner() {
   return (
     <Box className={classes.circle}>
       <CircularProgress />
-     </Box>
+    </Box>
   );
 }
 function Error() {
@@ -103,7 +117,12 @@ function Error() {
     </Alert>
   );
 }
-export default function SidebarLoader({ setMarkers, findInMap, setShop }) {
+export default function SidebarLoader({
+  markers,
+  setMarkers,
+  findInMap,
+  setShop,
+}) {
   const originalPoints = pointsCollector("/shops");
   const kOrganizedPoints = pointsCollector("/k-clustered-shops");
 
@@ -111,10 +130,9 @@ export default function SidebarLoader({ setMarkers, findInMap, setShop }) {
     return <Spinner />;
   if (originalPoints.isError || kOrganizedPoints.isError) return <Error />;
 
- 
-  
   return (
     <Sidebar
+      markers={markers}
       originalPoints={originalPoints.points}
       kOrganizedPoints={kOrganizedPoints.points}
       setMarkers={setMarkers}

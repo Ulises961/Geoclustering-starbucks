@@ -13,10 +13,13 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "100vh",
     width:"100%",
     flexGrow: 1,
+   
   },
   main: {
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(2),
+    minHeight: "100vh",
+   
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -30,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3, 2),
     backgroundColor: "black",
     color: "white",
-  },
+    },
 }));
 
 Layout.propTypes = {
@@ -57,9 +60,9 @@ export default function Layout({ children }) {
       <div className={classes.root}>
         <Navbar />
         <CssBaseline />
-        <Container component="main" className={classes.main}>
+        <Box component="main" className={classes.main}>
           <Box>{children}</Box>
-        </Container>
+        </Box>
         <footer component="footer" className={classes.footer}>
           <Container maxWidth="sm">
             <Typography variant="body1">Created by ... </Typography>
